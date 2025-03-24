@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Description" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css"
+    />
+    <style>
+      .app-loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+      .app-name-link{
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="app-loading">加载中...</div>
+    </div>
+    <script>
+      window.$docsify = {
+        name: "<div id='docs-name'>docs-coderpeng<div>",
+        nameLink: "/",
+        nativeEmoji: false,
+        repo: "https://github.com/docsifyjs/docsify/",
+        loadSidebar: true,
+        loadNavbar: true,
+        subMaxLevel: 2,
+        auto2top: true,
+        autoHeader: true,
+        // logo: "/_media/icon.png",
+        themeColor: '#3F51B5',
+      };
+    </script>
+    <!-- Docsify v4 -->
+    <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+  </body>
+</html>
