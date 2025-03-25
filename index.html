@@ -16,8 +16,14 @@
     <style>
       .app-loading {
         position: fixed;
-        top: 0;
-        left: 0;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        font-size: 20px;
+        color: #42b983;
+        font-weight: 500;
+        text-align: center;
+        width: 100%;
       }
       .app-name-link{
         font-weight: 500;
@@ -33,14 +39,14 @@
         name: "<div id='docs-name'>docs-coderpeng<div>",
         nameLink: "/",
         nativeEmoji: false,
-        repo: "https://github.com/docsifyjs/docsify/",
+        repo: "https://github.com/pengpen1/docs",
         loadSidebar: true,
         loadNavbar: true,
         subMaxLevel: 2,
         auto2top: true,
         autoHeader: true,
         // logo: "/_media/icon.png",
-        themeColor: '#3F51B5',
+        themeColor: '#42b983',
       };
     </script>
     <!-- Docsify v4 -->
