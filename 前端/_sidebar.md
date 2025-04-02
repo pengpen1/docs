@@ -9,7 +9,7 @@
   - [CSS](/前端/css/01_test.md)
 
 - JavaScript 
-  - [JavaScript](/前端/js/01_test.md)
+  - [01_数据类型](/前端/js/01_数据类型.md)
 
 - Vue
   - [Vue](/前端/vue/01_test.md)
