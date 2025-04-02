@@ -102,14 +102,13 @@
         autoHeader: true,
         // logo: "/_media/icon.png",
         themeColor: "#42b983",
-        search: "auto", // 默认值
         search: {
           maxAge: 86400000, // 过期时间，单位毫秒，默认一天
-          paths: [], // or 'auto'
+          paths: 'auto', // or 'auto'
           placeholder: "🔍 Type to search",
           noData: "No Results!",
           // 搜索标题的最大层级, 1 - 6
-          depth: 2,
+          depth: 5,
           hideOtherSidebarContent: true, // 是否隐藏其他侧边栏内容
         },
       };
