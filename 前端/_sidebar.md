@@ -23,7 +23,7 @@
    - [介绍](/前端/minProgram/01_Introduction.md)   
 
 - 前端安全
-   - [前端安全](/前端/safety/01_test.md)
+   - [URL编码](/前端/safety/01_URL编码.md)
 
 - 性能优化
    - [性能优化](/前端/capability/01_test.md)

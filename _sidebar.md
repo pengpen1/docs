@@ -10,13 +10,13 @@
   - [Vue](/前端/vue/01_test.md)
   - [Three.js](/前端/threejs/01_Introduction.md)
   - [小程序](/前端/minProgram/01_Introduction.md)
-  - [前端安全](/前端/safety/01_test.md)
+  - [前端安全](/前端/safety/01_URL编码.md)
   - [性能优化](/前端/capability/01_test.md)
 
 - 后端
 
   - [01_请求中的MIME类型](/后端/01_请求中的MIME类型.md)
-  - [02_cf+Vercel+域名解析](/后端/02_cf+Vercel+域名解析.md)
+  - [02_将Vercel挂载到Cloudflare](/后端/02_cf+Vercel+域名解析.md)
 
 - 算法
 
