@@ -1,6 +1,0 @@
-E:\projects\document\docs
-├─.nojekyll
-├─guide.md
-├─index.html
-├─README.md
-└_sidebar.md
