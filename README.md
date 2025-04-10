@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <img alt="img" src="https://cdn.jsdelivr.net/gh/pengpen1/blog-images/movie-2545676_1280.jpg" style="max-width:800px;width:65%">
+  <img alt="start" src="./_media/start.jpg" style="max-width:800px;width:65%">
 </p>
 
 <!-- TODO: 动画增强 -->
@@ -119,13 +119,13 @@
 - [blog-coderpeng](https://pengpen1.github.io/)
 coderpeng 的博客网站，热爱生活，热爱自己。
 <p align="center">
-  <img alt="blog" src="https://cdn.jsdelivr.net/gh/pengpen1/blog-images/blog首页.png" style="width:100%;height:400px;object-fit: cover;">
+  <img alt="blog" src="./_media/blog-coderpeng.png" style="width:100%;height:400px;object-fit: cover;">
 </p>
 
-- [three-demo-site](https://pengpen1.github.io/three-demo-site/#/)
+- [three-coderpeng](https://pengpen1.github.io/three-demo-site/#/)
 coderpeng 的 3D 项目展示网站，代码是艺术，编程是创造。
 <p align="center">
-  <img alt="blog" src="https://cdn.jsdelivr.net/gh/pengpen1/blog-images/three.png" style="width:100%;height:400px;object-fit: cover;">
+  <img alt="blog" src="./_media/three-coderpeng.png" style="width:100%;height:400px;object-fit: cover;">
 </p>
 
 <h2 align="center">coding...<img src="https://media.giphy.com/media/WUlplcMpOCEmTGBtBW/giphy.gif" width="30"></h2>
