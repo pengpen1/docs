@@ -88,6 +88,14 @@
         width: 100%;
         height: 250px;
       }
+
+      @media (max-width: 768px) {
+        .sidebar-toggle,
+        body.close .sidebar-toggle {
+          background-color: transparent;
+          transition: color 2s ease;
+        }
+      }
     </style>
     <!-- Adds the default breadcrumb styling -->
     <link
@@ -112,7 +120,7 @@
         loadNavbar: false,
         subMaxLevel: 1,
         auto2top: true,
-        autoHeader: true,
+        autoHeader: false,
         // logo: "/_media/icon.png",
         themeColor: "#42b983",
         search: {
@@ -132,7 +140,7 @@
           linkColor: "var(--theme-color, #42b983)",
           size: "normal",
         },
-        notFoundPage: 'my404.md',
+        notFoundPage: "my404.md",
       };
     </script>
     <!-- Docsify v4 -->
