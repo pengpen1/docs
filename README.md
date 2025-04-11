@@ -56,7 +56,7 @@
   }
 
   .timeline-path {
-    width: 82%;
+    width: 100%;
     height: 3px;
     background: linear-gradient(90deg, #4facfe, #00f2fe);
     margin: 0 auto;
@@ -65,7 +65,7 @@
 
   .timeline-node {
     position: absolute;
-    left: calc(var(--pos) * 80%);
+    left: calc(var(--pos) * 100%);
     top: -10px;
     animation: node-float 2s infinite;
   }
@@ -93,10 +93,6 @@
 
   /* 媒体查询：兼容移动端 */
   @media (max-width: 768px) {
-    .start-img {
-      width: 60% !important;
-      margin-right: 8px !important;
-    }
     #line-gif {
       width: 100% !important;
       height: 80px !important;
@@ -109,6 +105,16 @@
       width: 18px;
       height: 18px;
     }
+    .timeline-path{
+      width: 90%!important;
+    }
+    .timeline-node {
+    position: absolute;
+    left: calc(var(--pos) * 80%);
+    top: -10px;
+    animation: node-float 2s infinite;
+  }
+
   }
 </style>
 
@@ -119,6 +125,12 @@
     height: 40vh;
     transform-style: preserve-3d;
     margin-bottom: 80px;
+  }
+
+  .card-text{
+    width: 50%;
+    text-align: center;
+    padding-left: 12px;
   }
 
   .card-layer {
@@ -149,6 +161,27 @@
   .parallax-grid:hover .card-layer:not(:hover) {
     filter: brightness(0.8);
     transform: translateZ(calc(var(--depth) * -100px));
+  }
+    /* 新增移动端适配 */
+  @media (max-width: 768px) {
+    .parallax-grid {
+      height: 400px; 
+    }
+    /* 改为垂直排列 */
+    .card-layer {
+      flex-direction: column;
+    }
+    
+    .card-layer img {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+    .card-text{
+    width: 100%;
+    height: 74px;
+    text-align: center;
+    padding-top: 22px;
+  }
   }
 </style>
 
@@ -237,6 +270,25 @@
     text-align: center;
     background: white;
     position: relative;
+    cursor: pointer;
+  }
+  .badge .tooltip{
+    display: none;
+    height: 62px;
+  }
+  .badge .conttent{
+    display: block;
+    height: 62px;
+  }
+  .badge:hover .tooltip{
+    display: block;
+  }
+  .badge:hover .conttent {
+    display: none;
+  }
+  .earned:hover{
+    border: 2px solid #80c055 !important;
+    animation: glow2 2s infinite alternate !important;
   }
 
   .badge.earned {
@@ -257,9 +309,18 @@
     }
   }
 
+    @keyframes glow2 {
+    from {
+      box-shadow: 0 0 5px #80c055;
+    }
+    to {
+      box-shadow: 0 0 20px #80c055;
+    }
+  }
+
   /* 动态布局技能节点位置 */
   .skill-node[data-skill="one"] {
-    left: 18%;
+    left: calc(40% - 80px);
     top: 10%;
   }
   .skill-node[data-skill="two"] {
@@ -267,7 +328,7 @@
     top: 20%;
   }
   .skill-node[data-skill="three"] {
-    left: 18%;
+    left: calc(40% - 80px);
     top: 40%;
   }
   .skill-node[data-skill="four"] {
@@ -327,10 +388,9 @@
         width: 65%;
         height: 40vh;
         object-fit: cover;
-        margin-right: 8px;
       "
     />
-    <div>喜欢摄影、骑车、跑步，保存记忆，直到永远</div>
+    <div class="card-text">喜欢摄影、骑车、跑步，保存记忆，直到永远</div>
   </div>
   <div class="card-layer" style="--depth: 2">
     <img
@@ -338,14 +398,15 @@
       alt="中间层"
       style="max-width: 800px; width: 65%; height: 40vh; object-fit: cover"
     />
+    <div class="card-text"></div>
   </div>
   <div class="card-layer" style="--depth: 3">
     <img
-      class="start-img"
       src="./_media/run.jpg"
       alt="前景层"
       style="max-width: 800px; width: 65%; height: 40vh; object-fit: cover"
     />
+    <div class="card-text"></div>
   </div>
 </div>
 
@@ -370,12 +431,12 @@
     <div class="node-popup">走进计算机世界的大门</div>
   </div>
 
-  <div class="timeline-node" style="--pos: 0.4">
+  <div class="timeline-node" style="--pos: 0.45">
     <div class="node-badge">💻 2024</div>
     <div class="node-popup">第一个人项目上线</div>
   </div>
 
-  <div class="timeline-node" style="--pos: 0.8">
+  <div class="timeline-node" style="--pos: 0.9">
     <div class="node-badge">🚀 2025</div>
     <div class="node-popup">AI可视化系统研发中</div>
   </div>
@@ -392,35 +453,59 @@
       <div class="tooltip">10K+ 代码行</div>
     </div>
     <div class="skill-node locked" data-skill="two">
-      <div class="progress-bar" style="--progress: 45%"></div>
+      <div class="progress-bar" style="--progress: 55%"></div>
       <div class="tooltip">3D游戏项目</div>
     </div>
     <div class="skill-node locked" data-skill="three">
-      <div class="progress-bar" style="--progress: 30%"></div>
+      <div class="progress-bar" style="--progress: 40%"></div>
       <div class="tooltip">全栈项目</div>
     </div>
     <div class="skill-node locked" data-skill="four">
-      <div class="progress-bar" style="--progress: 50%"></div>
+      <div class="progress-bar" style="--progress: 20%"></div>
       <div class="tooltip">数据可视化专家</div>
     </div>
   </div>
   <!-- 成就展示区 -->
   <div class="achievement-wall">
     <div class="badge earned" data-badge="python-master">
-      <div class="badge-icon">🔓</div>
-      <span>10K+ 代码行</span>
+      <div class="conttent">
+        <div class="badge-icon">🔓</div>
+        <span> 代码行数 10K+</span>
+      </div>
+      <div class="tooltip">
+        <div>🎉</div>
+        <span> 2024年12月达成！ </span>
+      </div>
     </div>
     <div class="badge locked" data-badge="threejs">
-      <div class="badge-icon">🔒</div>
-      <span>3D游戏项目</span>
+      <div class="conttent">
+        <div class="badge-icon">🔒</div>
+        <span> 3D游戏项目</span>
+      </div>
+      <div class="tooltip">
+        <div>✨</div>
+        <span> 进度：55% </span>
+      </div>
     </div>
     <div class="badge locked" data-badge="threejs">
-      <div class="lock-icon">🔒</div>
-      <span>全栈项目</span>
+      <div class="conttent">
+        <div class="badge-icon">🔒</div>
+        <span> 全栈项目</span>
+      </div>
+      <div class="tooltip">
+        <div>✨</div>
+        <span> 进度：40% </span>
+      </div>
     </div>
     <div class="badge locked" data-badge="python-master">
-      <div class="lock-icon">🔒</div>
-      <span>数据可视化专家</span>
+      <div class="conttent">
+        <div class="badge-icon">🔒</div>
+        <span>数据可视化专家</span>
+      </div>
+      <div class="tooltip">
+        <div>✨</div>
+        <span> 进度：20% </span>
+      </div>
     </div>
   </div>
 </div>
@@ -469,7 +554,6 @@
   />
 </p>
 <p align="center"></p>
-
 
 <details>
 <summary>点击展开目录结构</summary>
