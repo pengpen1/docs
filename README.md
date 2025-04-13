@@ -503,7 +503,83 @@
   }
 </style>
 
-<h1 align="center">coderpeng 的笔记</h1>
+<style>
+/* 技术栈 */
+@keyframes skillReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tech-stacks {
+  display: grid;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: rgba(255,255,255,0.1);
+  border-radius: 12px;
+}
+
+.skill {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0;
+  animation: skillReveal 0.6s ease forwards;
+}
+
+/* 交错动画延迟 */
+.skill:nth-child(1) { animation-delay: 0.2s; }
+.skill:nth-child(2) { animation-delay: 0.4s; }
+.skill:nth-child(3) { animation-delay: 0.6s; }
+
+.skill-icon {
+  font-size: 2em;
+  transition: transform 0.3s;
+}
+
+.skill:hover .skill-icon {
+  transform: rotate(15deg) scale(1.2);
+}
+
+.skill-info {
+  flex-grow: 1;
+}
+
+.skill-bar {
+  height: 8px;
+  background: rgba(66,185,131,0.2);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-bar::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: calc(var(--percent) * 1%);
+  background: linear-gradient(90deg, #42b983, #4facfe);
+  border-radius: 4px;
+  transition: width 0.8s ease;
+}
+
+/* 响应式布局 */
+@media (min-width: 768px) {
+  .tech-stacks {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+</style>
+
+
+<h1 align="center" id="site-title">coderpeng 的笔记</h1>
 
 <p align="center">
   <span> 我是coderpeng，一位喜欢探索的开发者，目前专注于AI+可视化开发。 </span>
@@ -856,7 +932,49 @@
 </p>
 </div>
 
+### 🔧 技术栈图谱
+
+<div class="tech-stacks">
+
+  <!-- 技能项 -->
+  <div class="skill" data-percent="90">
+    <div class="skill-icon">🐍</div>
+    <div class="skill-info">
+      <span>Vue</span>
+      <div class="skill-bar"></div>
+    </div>
+  </div>
+
+  <div class="skill" data-percent="85">
+    <div class="skill-icon">🧠</div>
+    <div class="skill-info">
+      <span>Three.js</span>
+      <div class="skill-bar"></div>
+    </div>
+  </div>
+
+
+  <div class="skill" data-percent="80">
+    <div class="skill-icon">📊</div>
+    <div class="skill-info">
+      <span>ECharts</span>
+      <div class="skill-bar"></div>
+    </div>
+  </div>
+
+  <div class="skill" data-percent="55">
+    <div class="skill-icon">💻</div>
+    <div class="skill-info">
+      <span>Webpack</span>
+      <div class="skill-bar"></div>
+    </div>
+  </div>
+
+</div>
+
 ### 关于我
+
+<!-- todo: 滚到到指定位置后从两边滑出代表着技能掌握度的饼图，滚上去饼图们消失，再次滚下来时又出现该动画 -->
 
 <div style="border-left: 3px solid #42b983; padding-left: 15px;">
 3年系统建设经验，专注于数据可视化和AI工程化。
