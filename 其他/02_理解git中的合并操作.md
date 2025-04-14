@@ -1,3 +1,5 @@
+<h1 align="center" id="理解git中的合并操作">理解git中的合并操作</h1>
+
 **概要：** 在工作中我们经常使用`git merge` 或者`git pull`，但是我们对于其中的原理还不是很清楚，比如我刚学的时候，经常会像，合这个分支会不会给我增加很多不要的文件，为什么合并了没有文件改变呢？等等这些疑问，所以这里一起来学习下吧。
 
 
@@ -45,6 +47,6 @@ git checkout main -- file1.txt file2.txt
 
 
 
-**## 参考链接**
+## 参考链接
 
 - [Git：合并分支----git merge命令应用的三种情景-CSDN博客](https://blog.csdn.net/qq_42780289/article/details/97945300)

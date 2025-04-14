@@ -115,10 +115,10 @@
         name: "<div id='docs-name'>docs-coderpeng<div>",
         nameLink: "/",
         nativeEmoji: false,
-        repo: "https://github.com/pengpen1/docs",
+        // repo: "https://github.com/pengpen1/docs",
         loadSidebar: true,
         loadNavbar: false,
-        subMaxLevel: 1,
+        subMaxLevel: 2,
         auto2top: true,
         autoHeader: false,
         coverpage: true,
@@ -127,7 +127,7 @@
         search: {
           maxAge: 86400000, // 过期时间，单位毫秒，默认一天
           paths: "auto", // or 'auto'
-          placeholder: "🔍 Type to search",
+          placeholder: "Type to search",
           noData: "No Results!",
           // 搜索标题的最大层级, 1 - 6
           depth: 5,
@@ -142,6 +142,12 @@
           size: "normal",
         },
         notFoundPage: "my404.md",
+        pagination: {
+          previousText: "上一章节",
+          nextText: "下一章节",
+          crossChapter: true,
+          crossChapterText: true,
+        },
       };
     </script>
     <!-- Docsify v4 -->
@@ -150,5 +156,6 @@
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
     <!-- Adds the breadcrumb JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/docsify-breadcrumb@latest/dist/index.min.js"></script>
+    <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
   </body>
 </html>

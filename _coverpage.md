@@ -1,9 +1,9 @@
 # coderpeng 的笔记 <small>1.2</small>
 
-> 欢迎来到我的二进制世界！
+> 简约而不简单
 
 - [.探索](#site-title)
-- [.记录](#其他个人站点)
+- [.记录](/log)
 - [.分享](#其他个人站点)
 
 [GitHub](https://github.com/pengpen1)

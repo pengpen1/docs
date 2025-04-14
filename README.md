@@ -1,5 +1,24 @@
 <style>
   /* 动画及样式 */
+  @keyframes jumpAndRotate {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(180deg);
+  }
+  100% {
+    transform: translateY(0) rotate(360deg);
+  }
+}
+
+.arrow {
+  width: 30px;
+  height: 30px;
+  background-color: blue;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%); /* Creating a simple arrow */
+  animation: jumpAndRotate 2s ease-in-out infinite;
+}
   @keyframes bounce {
     0%,
     100% {
@@ -114,6 +133,12 @@
     top: -10px;
     animation: node-float 2s infinite;
   }
+  .timeline-node:last-child {
+    left: calc(0.85 * 80%);
+}
+.timeline-node:nth-last-child(2) {
+    left: calc(0.45 * 80%);
+}
 
   }
 </style>
@@ -564,7 +589,7 @@
   left: 0;
   top: 0;
   height: 100%;
-  width: calc(var(--percent) * 1%);
+  width: var(--percent);
   background: linear-gradient(90deg, #42b983, #4facfe);
   border-radius: 4px;
   transition: width 0.8s ease;
@@ -577,7 +602,6 @@
   }
 }
 </style>
-
 
 <h1 align="center" id="site-title">coderpeng 的笔记</h1>
 
@@ -625,6 +649,100 @@
   </div>
 </div>
 
+### 目录结构
+
+<p align="left" style="text-align: center">
+  内容涵盖：
+  <a href="#/AI/01_检索内容增强(RAG)"
+    ><img
+      src="https://img.shields.io/badge/-AI+-black?style=flat-square&logo=openAI"
+      style="vertical-align: middle"
+  /></a>
+  <a href="#/前端/threejs/01_Introduction"
+    ><img
+      src="https://img.shields.io/badge/-ThreeJS-black?style=flat-square&logo=Three.js"
+      style="vertical-align: middle"
+  /></a>
+  <img
+    src="https://img.shields.io/badge/-HTML-darkgreen?style=flat-square&logo=html5"
+    style="vertical-align: middle"
+  />
+  <img
+    src="https://img.shields.io/badge/-CSS-darkgreen?style=flat-square&logo=css3"
+    style="vertical-align: middle"
+  />
+  <img
+    src="https://img.shields.io/badge/-JavaScript-darkgreen?style=flat-square&logo=javascript"
+    style="vertical-align: middle"
+  />
+  <img
+    src="https://img.shields.io/badge/-Vuejs-darkgreen?style=flat-square&logo=Vue.js"
+    style="vertical-align: middle"
+  />
+  <img
+    src="https://img.shields.io/badge/-NodeJs-darkgreen?style=flat-square&logo=Node.js"
+    style="vertical-align: middle"
+  />
+  <img
+    src="https://img.shields.io/badge/-Python-darkgreen?style=flat-square&logo=Python"
+    style="vertical-align: middle"
+  />
+  <img
+    src="https://img.shields.io/badge/-Git-darkgreen?style=flat-square&logo=Git"
+    style="vertical-align: middle"
+  />
+</p>
+<p align="center"></p>
+
+<details>
+<summary>点击展开目录结构</summary>
+
+```tex
+├─.gitlab-ci.yml | Gitee自动化部署脚本
+├─.nojekyll  | 阻止 GitHub Pages 忽略掉下划线开头的文件
+├─favicon.ico | 图标
+├─guide.md | 本站帮助文件
+├─index.html | 入口文件
+├─README.md | 主页
+├─_coverpage.md | 封面
+├─log.md | 更新日志
+├─_navbar.md | 顶部导航配置
+├─_sidebar.md | 侧边导航配置
+├─AI+
+| ├─01_检索内容增强(RAG).md
+| ...
+├─算法
+| ├─01_两数之和.md
+| ...
+├─爬虫
+| ├─01_京东抢购脚本.md
+| ...
+├─工具
+| ├─01_自定义路径复制脚本.md
+| ...
+├─后端
+| ├─01_请求中的MIME类型.md
+| ...
+├─前端
+| ├─_sidebar.md | 下钻菜单配置页面
+| ├─vue
+| ├─threejs
+| ├─safety | 前端安全相关
+| ├─minProgram | 小程序相关
+| ├─js
+| ├─html
+| ├─css
+| ├─capability | 性能优化相关
+├─其他
+| ├─01_计算机网络知识汇总.md
+| ...
+├─_media | 存放静态资源的地方
+| ├─icon.png
+| ...
+```
+
+</details>
+
 <div class="split-box">
   <div class="bounce-ball" style="--i: 1"></div>
   <div class="bounce-ball" style="--i: 2"></div>
@@ -651,7 +769,7 @@
     <div class="node-popup">第一个人项目上线</div>
   </div>
 
-  <div class="timeline-node" style="--pos: 0.9">
+  <div class="timeline-node" style="--pos: 0.93">
     <div class="node-badge">🚀 2025</div>
     <div class="node-popup">AI可视化系统研发中</div>
   </div>
@@ -724,98 +842,6 @@
     </div>
   </div>
 </div>
-
-### 目录结构
-
-<p align="left" style="text-align: center">
-  内容涵盖：
-  <a href="#/AI/01_检索内容增强(RAG)"
-    ><img
-      src="https://img.shields.io/badge/-AI+-black?style=flat-square&logo=openAI"
-      style="vertical-align: middle"
-  /></a>
-  <a href="#/前端/threejs/01_Introduction"
-    ><img
-      src="https://img.shields.io/badge/-ThreeJS-black?style=flat-square&logo=Three.js"
-      style="vertical-align: middle"
-  /></a>
-  <img
-    src="https://img.shields.io/badge/-HTML-darkgreen?style=flat-square&logo=html5"
-    style="vertical-align: middle"
-  />
-  <img
-    src="https://img.shields.io/badge/-CSS-darkgreen?style=flat-square&logo=css3"
-    style="vertical-align: middle"
-  />
-  <img
-    src="https://img.shields.io/badge/-JavaScript-darkgreen?style=flat-square&logo=javascript"
-    style="vertical-align: middle"
-  />
-  <img
-    src="https://img.shields.io/badge/-Vuejs-darkgreen?style=flat-square&logo=Vue.js"
-    style="vertical-align: middle"
-  />
-  <img
-    src="https://img.shields.io/badge/-NodeJs-darkgreen?style=flat-square&logo=Node.js"
-    style="vertical-align: middle"
-  />
-  <img
-    src="https://img.shields.io/badge/-Python-darkgreen?style=flat-square&logo=Python"
-    style="vertical-align: middle"
-  />
-  <img
-    src="https://img.shields.io/badge/-Git-darkgreen?style=flat-square&logo=Git"
-    style="vertical-align: middle"
-  />
-</p>
-<p align="center"></p>
-
-<details>
-<summary>点击展开目录结构</summary>
-
-```tex
-├─.gitlab-ci.yml | Gitee自动化部署脚本
-├─.nojekyll  | 阻止 GitHub Pages 忽略掉下划线开头的文件
-├─favicon.ico | 图标
-├─guide.md | 本站帮助文件
-├─index.html | 入口文件
-├─README.md | 主页
-├─_navbar.md | 顶部导航配置
-├─_sidebar.md | 侧边导航配置
-├─AI+
-| ├─01_检索内容增强(RAG).md
-| ...
-├─算法
-| ├─01_两数之和.md
-| ...
-├─爬虫
-| ├─01_京东抢购脚本.md
-| ...
-├─工具
-| ├─01_自定义路径复制脚本.md
-| ...
-├─后端
-| ├─01_请求中的MIME类型.md
-| ...
-├─前端
-| ├─_sidebar.md | 下钻菜单配置页面
-| ├─vue
-| ├─threejs
-| ├─safety | 前端安全相关
-| ├─minProgram | 小程序相关
-| ├─js
-| ├─html
-| ├─css
-| ├─capability | 性能优化相关
-├─其他
-| ├─01_计算机网络知识汇总.md
-| ...
-├─_media | 存放静态资源的地方
-| ├─icon.png
-| ...
-```
-
-</details>
 
 ### 其他个人站点
 
@@ -932,12 +958,12 @@
 </p>
 </div>
 
-### 🔧 技术栈图谱
+### 技术栈
 
 <div class="tech-stacks">
 
   <!-- 技能项 -->
-  <div class="skill" data-percent="90">
+  <div class="skill" data-percent="90" style="--percent: 90%">
     <div class="skill-icon">🐍</div>
     <div class="skill-info">
       <span>Vue</span>
@@ -945,7 +971,7 @@
     </div>
   </div>
 
-  <div class="skill" data-percent="85">
+  <div class="skill" data-percent="85" style="--percent: 85%">
     <div class="skill-icon">🧠</div>
     <div class="skill-info">
       <span>Three.js</span>
@@ -953,8 +979,7 @@
     </div>
   </div>
 
-
-  <div class="skill" data-percent="80">
+  <div class="skill" data-percent="80" style="--percent: 80%">
     <div class="skill-icon">📊</div>
     <div class="skill-info">
       <span>ECharts</span>
@@ -962,10 +987,10 @@
     </div>
   </div>
 
-  <div class="skill" data-percent="55">
+  <div class="skill" data-percent="55" style="--percent: 55%">
     <div class="skill-icon">💻</div>
     <div class="skill-info">
-      <span>Webpack</span>
+      <span>Vite</span>
       <div class="skill-bar"></div>
     </div>
   </div>
@@ -976,7 +1001,7 @@
 
 <!-- todo: 滚到到指定位置后从两边滑出代表着技能掌握度的饼图，滚上去饼图们消失，再次滚下来时又出现该动画 -->
 
-<div style="border-left: 3px solid #42b983; padding-left: 15px;">
+<div style="border-left: 3px solid #42b983; padding-left: 15px;margin-top: 2rem;">
 3年系统建设经验，专注于数据可视化和AI工程化。
 <br>
 
