@@ -1,6 +1,6 @@
 <!-- docs/_sidebar.md -->
 
-- [返回🚀](/README.md)
+- [返回🚀](/)
 
 - HTML
   - [01_介绍](/前端/html/01_HTML5新增内容.md)

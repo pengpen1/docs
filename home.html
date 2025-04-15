@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>coderpeng 的笔记</title>
+    <style>
+      /* 动画及样式 */
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      @keyframes bounce-color {
+        0%,
+        100% {
+          transform: translateY(0) scale(1);
+        }
+
+        30% {
+          transform: translateY(-30px) scale(1.2);
+        }
+
+        50% {
+          background: #4ecdc4;
+        }
+
+        70% {
+          transform: translateY(0) scale(0.9);
+        }
+      }
+
+      @keyframes shake {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+
+        30% {
+          transform: rotateZ(30deg) scale(1.2);
+        }
+
+        50% {
+          transform: rotateZ(-30deg) scale(1.2);
+        }
+
+        70% {
+          transform: scale(0.9);
+        }
+      }
+
+      @keyframes node-float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .split-box {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 50px;
+        margin-top: 100px;
+      }
+
+      .bounce-ball {
+        width: 30px;
+        height: 30px;
+        background: #ff6b6b;
+        border-radius: 50%;
+        animation: bounce-color 1.2s ease-in-out infinite;
+        animation-delay: calc(0.2s * var(--i));
+      }
+
+      .timeline-container {
+        position: relative;
+        margin: 40px 0;
+      }
+
+      .timeline-path {
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, #4facfe, #00f2fe);
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .timeline-node {
+        position: absolute;
+        left: calc(var(--pos) * 100%);
+        top: -10px;
+        animation: node-float 2s infinite;
+      }
+
+      .node-badge {
+        background: #fff;
+        padding: 8px 15px;
+        border-radius: 20px;
+        box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
+        cursor: pointer;
+        transition: transform 0.3s;
+      }
+
+      .node-popup {
+        position: absolute;
+        top: 40px;
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .timeline-node:hover .node-popup {
+        opacity: 1;
+      }
+
+      /* 媒体查询：兼容移动端 */
+      @media (max-width: 768px) {
+        #line-gif {
+          width: 100% !important;
+          height: 80px !important;
+        }
+
+        .site-png {
+          height: auto !important;
+          object-fit: contain !important;
+        }
+
+        .bounce-ball {
+          width: 18px;
+          height: 18px;
+        }
+
+        .timeline-path {
+          width: 90% !important;
+        }
+
+        .timeline-node {
+          position: absolute;
+          left: calc(var(--pos) * 80%);
+          top: -10px;
+          animation: node-float 2s infinite;
+        }
+
+        .timeline-node:last-child {
+          left: calc(0.85 * 80%);
+        }
+
+        .timeline-node:nth-last-child(2) {
+          left: calc(0.45 * 80%);
+        }
+      }
+    </style>
+
+    <style>
+      /* 照片卡片相关 */
+      .parallax-grid {
+        position: relative;
+        height: 40vh;
+        transform-style: preserve-3d;
+        margin-bottom: 80px;
+      }
+
+      .card-text {
+        width: 50%;
+        text-align: center;
+        padding-left: 12px;
+      }
+
+      .card-layer {
+        position: absolute;
+        padding: 20px;
+        width: 100%;
+        transition: 0.3s all ease-out;
+        transform: translateZ(calc(var(--depth) * -50px));
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .card-layer:hover {
+        transform: translateZ(calc(var(--depth) * 30px))
+          rotateZ(calc(var(--depth) * 2deg));
+        z-index: 5;
+      }
+
+      .card-layer:nth-child(odd):hover {
+        transform: translateZ(calc(var(--depth) * 30px))
+          rotateZ(calc(var(--depth) * -2deg));
+      }
+
+      /* 悬停时其他卡片退场 */
+      .parallax-grid:hover .card-layer:not(:hover) {
+        filter: brightness(0.8);
+        transform: translateZ(calc(var(--depth) * -100px));
+      }
+
+      /* 新增移动端适配 */
+      @media (max-width: 768px) {
+        .parallax-grid {
+          min-height: 400px;
+        }
+
+        /* 改为垂直排列 */
+        .card-layer {
+          flex-direction: column;
+        }
+
+        .card-layer img {
+          width: 100% !important;
+          max-width: 100% !important;
+        }
+
+        .card-text {
+          width: 100%;
+          height: 74px;
+          text-align: center;
+          padding-top: 22px;
+        }
+      }
+    </style>
+
+    <style>
+      /* 成就树相关 */
+      .achievement-system {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 40px;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .skill-tree {
+        position: relative;
+        min-height: 400px;
+      }
+
+      .tree-trunk {
+        width: 8px;
+        height: 100%;
+        background: linear-gradient(to bottom, #4facfe, #00f2fe);
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .skill-node {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        padding: 12px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3);
+        cursor: pointer;
+        transition: transform 0.3s;
+      }
+
+      /* .skill-node.unlocked {
+    border: 3px solid #42b983;
+  } */
+
+      .skill-node.locked {
+        filter: grayscale(0.8);
+        opacity: 0.6;
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 4px;
+        background: #eee;
+        position: absolute;
+        bottom: -20px;
+        border-radius: 2px;
+      }
+
+      .progress-bar::after {
+        content: "";
+        display: block;
+        width: var(--progress);
+        height: 100%;
+        background: #4facfe;
+        border-radius: 2px;
+        transition: width 0.5s ease;
+      }
+
+      .tooltip {
+        /* 悬浮提示样式 */
+      }
+
+      .achievement-wall {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        align-content: start;
+      }
+
+      .badge {
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+        background: white;
+        position: relative;
+        cursor: pointer;
+      }
+
+      .badge .tooltip {
+        display: none;
+        height: 62px;
+      }
+
+      .badge .badge-content {
+        display: block;
+        height: 62px;
+      }
+
+      .badge:hover .tooltip {
+        display: block;
+      }
+
+      .badge:hover .badge-content {
+        display: none;
+      }
+
+      .earned:hover {
+        border: 2px solid #80c055 !important;
+        animation: glow2 2s infinite alternate !important;
+      }
+
+      .badge.earned {
+        border: 2px solid #ffd700;
+        animation: glow 2s infinite alternate;
+      }
+
+      .badge.locked {
+        background: #f5f5f5;
+      }
+
+      @keyframes glow {
+        from {
+          box-shadow: 0 0 5px #ffd700;
+        }
+
+        to {
+          box-shadow: 0 0 20px #ffd700;
+        }
+      }
+
+      @keyframes glow2 {
+        from {
+          box-shadow: 0 0 5px #80c055;
+        }
+
+        to {
+          box-shadow: 0 0 20px #80c055;
+        }
+      }
+
+      /* 动态布局技能节点位置 */
+      .skill-node[data-skill="one"] {
+        left: calc(40% - 80px);
+        top: 10%;
+      }
+
+      .skill-node[data-skill="two"] {
+        left: 60%;
+        top: 20%;
+      }
+
+      .skill-node[data-skill="three"] {
+        left: calc(40% - 80px);
+        top: 40%;
+      }
+
+      .skill-node[data-skill="four"] {
+        left: 60%;
+        top: 50%;
+      }
+
+      @media (max-width: 768px) {
+        .achievement-system {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .skill-node {
+          width: 80px;
+          height: 80px;
+          padding: 10px;
+        }
+
+        .skill-node[data-skill="one"] {
+          left: 8%;
+          top: 10%;
+        }
+
+        .skill-node[data-skill="two"] {
+          left: 60%;
+          top: 20%;
+        }
+
+        .skill-node[data-skill="three"] {
+          left: 8%;
+          top: 40%;
+        }
+
+        .skill-node[data-skill="four"] {
+          left: 60%;
+          top: 50%;
+        }
+      }
+    </style>
+
+    <style>
+      /* 项目展示样式 */
+      .project-item {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 12px;
+        padding: 20px;
+        margin: 20px 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid #eee;
+      }
+
+      .project-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+      }
+
+      .project-item h3 {
+        color: #2c3e50;
+        margin: 0 0 15px 0;
+        /* padding-bottom: 10px; */
+        border-bottom: 2px solid #4ecdc4;
+        font-size: 1.4em;
+      }
+
+      .project-item ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .project-item li {
+        padding: 8px 0;
+        display: flex;
+        align-items: center;
+        font-size: 0.95em;
+      }
+
+      .project-item li::before {
+        content: "▹";
+        color: #4ecdc4;
+        margin-right: 10px;
+        font-size: 1.2em;
+      }
+
+      .tech-stack {
+        display: flex;
+        gap: 8px;
+        margin-top: 15px;
+        flex-wrap: wrap;
+      }
+
+      .tech-tag {
+        background: #f0f4f8;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.85em;
+        color: #2c3e50;
+        border: 1px solid #dfe6e9;
+      }
+
+      /* 移动端适配 */
+      @media (max-width: 768px) {
+        .project-item {
+          padding: 15px;
+          margin: 15px 0;
+        }
+
+        .project-item h3 {
+          font-size: 1.2em;
+        }
+
+        .project-item li {
+          font-size: 0.9em;
+        }
+      }
+    </style>
+
+    <style>
+      /* 新增个人站点专属样式 */
+      .personal-site {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        transition: transform 0.3s ease;
+        margin-top: 16px;
+      }
+
+      .personal-site:hover .site-overlay {
+        opacity: 1;
+      }
+
+      .site-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px;
+        color: white;
+      }
+
+      .site-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .stat-item {
+        background: rgba(255, 255, 255, 0.15);
+        padding: 12px;
+        border-radius: 8px;
+        text-align: center;
+      }
+
+      .stat-value {
+        font-size: 1.4em;
+        font-weight: bold;
+        color: #4ecdc4;
+      }
+
+      @media (max-width: 768px) {
+        .site-stats {
+          grid-template-columns: 1fr;
+        }
+
+        .stat-item {
+          padding: 10px;
+        }
+      }
+    </style>
+
+    <style>
+      /* 技术栈 */
+      @keyframes skillReveal {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .tech-stacks {
+        display: grid;
+        gap: 1.5rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+      }
+
+      .skill {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        opacity: 0;
+        animation: skillReveal 0.6s ease forwards;
+      }
+
+      /* 交错动画延迟 */
+      .skill:nth-child(1) {
+        animation-delay: 0.2s;
+      }
+
+      .skill:nth-child(2) {
+        animation-delay: 0.4s;
+      }
+
+      .skill:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+
+      .skill-icon {
+        font-size: 2em;
+        transition: transform 0.3s;
+      }
+
+      .skill:hover .skill-icon {
+        transform: rotate(15deg) scale(1.2);
+      }
+
+      .skill-info {
+        flex-grow: 1;
+      }
+
+      .skill-bar {
+        height: 8px;
+        background: rgba(66, 185, 131, 0.2);
+        border-radius: 4px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .skill-bar::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: var(--percent);
+        background: linear-gradient(90deg, #42b983, #4facfe);
+        border-radius: 4px;
+        transition: width 0.8s ease;
+      }
+
+      /* 响应式布局 */
+      @media (min-width: 768px) {
+        .tech-stacks {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1 align="center" id="site-title">coderpeng 的笔记</h1>
+
+    <p align="center">
+      <span style="margin-bottom: 1rem;display: inline-block;">
+        我是coderpeng，一位喜欢探索的开发者，目前专注于AI+可视化开发。 </span
+      ><br />
+      <span style="animation: shake 1.2s ease-in-out infinite;display: inline-block;"
+      >💐</span>
+      <span> 欢迎来到我的二进制世界！ </span><br />
+      <span> 愿君生活愉快，四季如春！ </span>
+    </p>
+
+    <div class="parallax-grid">
+      <div class="card-layer" style="--depth: 1">
+        <img
+          src="./_media/image/start.jpg"
+          alt="背景层"
+          style="max-width: 800px; width: 65%; height: 40vh; object-fit: cover"
+        />
+        <div class="card-text">喜欢摄影、骑车、跑步，保存记忆，直到永远</div>
+      </div>
+      <div class="card-layer" style="--depth: 2">
+        <img
+          src="./_media/image/bike.jpg"
+          alt="中间层"
+          style="max-width: 800px; width: 65%; height: 40vh; object-fit: cover"
+        />
+        <div class="card-text"></div>
+      </div>
+      <div class="card-layer" style="--depth: 3">
+        <img
+          src="./_media/image/run.jpg"
+          alt="前景层"
+          style="max-width: 800px; width: 65%; height: 40vh; object-fit: cover"
+        />
+        <div class="card-text"></div>
+      </div>
+    </div>
+
+    <h3>目录结构</h3>
+
+    <p align="center" style="text-align: center">
+      内容涵盖：
+      <a href="#/AI/01_检索内容增强(RAG)"
+        ><img
+          src="https://img.shields.io/badge/-AI+-black?style=flat-square&logo=openAI"
+          style="vertical-align: middle"
+      /></a>
+      <a href="#/前端/threejs/01_Introduction"
+        ><img
+          src="https://img.shields.io/badge/-ThreeJS-black?style=flat-square&logo=Three.js"
+          style="vertical-align: middle"
+      /></a>
+      <img
+        src="https://img.shields.io/badge/-HTML-darkgreen?style=flat-square&logo=html5"
+        style="vertical-align: middle"
+      />
+      <img
+        src="https://img.shields.io/badge/-CSS-darkgreen?style=flat-square&logo=css3"
+        style="vertical-align: middle"
+      />
+      <img
+        src="https://img.shields.io/badge/-JavaScript-darkgreen?style=flat-square&logo=javascript"
+        style="vertical-align: middle"
+      />
+      <img
+        src="https://img.shields.io/badge/-Vuejs-darkgreen?style=flat-square&logo=Vue.js"
+        style="vertical-align: middle"
+      />
+      <img
+        src="https://img.shields.io/badge/-NodeJs-darkgreen?style=flat-square&logo=Node.js"
+        style="vertical-align: middle"
+      />
+      <img
+        src="https://img.shields.io/badge/-Python-darkgreen?style=flat-square&logo=Python"
+        style="vertical-align: middle"
+      />
+      <img
+        src="https://img.shields.io/badge/-Git-darkgreen?style=flat-square&logo=Git"
+        style="vertical-align: middle"
+      />
+    </p>
+
+    <details>
+      <summary>点击展开目录结构</summary>
+      <pre><code>
+        ├─.gitlab-ci.yml | Gitee自动化部署脚本
+        ├─.nojekyll  | 阻止 GitHub Pages 忽略掉下划线开头的文件
+        ├─favicon.ico | 图标
+        ├─guide.md | 本站帮助文件
+        ├─index.html | 入口文件
+        ├─README.md | 主页
+        ├─_coverpage.md | 封面
+        ├─log.md | 更新日志
+        ├─_navbar.md | 顶部导航配置
+        ├─_sidebar.md | 侧边导航配置
+        ├─AI+
+        | ├─01_检索内容增强(RAG).md
+        | ...
+        ├─算法
+        | ├─01_两数之和.md
+        | ...
+        ├─爬虫
+        | ├─01_京东抢购脚本.md
+        | ...
+        ├─工具
+        | ├─01_自定义路径复制脚本.md
+        | ...
+        ├─后端
+        | ├─01_请求中的MIME类型.md
+        | ...
+        ├─前端
+        | ├─_sidebar.md | 下钻菜单配置页面
+        | ├─vue
+        | ├─threejs
+        | ├─safety | 前端安全相关
+        | ├─minProgram | 小程序相关
+        | ├─js
+        | ├─html
+        | ├─css
+        | ├─capability | 性能优化相关
+        ├─其他
+        | ├─01_计算机网络知识汇总.md
+        | ...
+        ├─_media | 存放静态资源的地方
+        | ├─icon.png
+        | ...
+      </code></pre>
+    </details>
+
+    <div class="split-box">
+      <div class="bounce-ball" style="--i: 1"></div>
+      <div class="bounce-ball" style="--i: 2"></div>
+      <div class="bounce-ball" style="--i: 3"></div>
+      <div class="bounce-ball" style="--i: 4"></div>
+    </div>
+
+    <h3>成就树</h3>
+
+    <div class="timeline-container">
+      <div class="timeline-path"></div>
+
+      <div class="timeline-node" style="--pos: 0">
+        <div class="node-badge">🎓 2023</div>
+        <div class="node-popup">走进计算机世界的大门</div>
+      </div>
+
+      <div class="timeline-node" style="--pos: 0.45">
+        <div class="node-badge">💻 2024</div>
+        <div class="node-popup">第一个人项目上线</div>
+      </div>
+
+      <div class="timeline-node" style="--pos: 0.93">
+        <div class="node-badge">🚀 2025</div>
+        <div class="node-popup">AI可视化系统研发中</div>
+      </div>
+    </div>
+
+    <p align="left">已解锁：1，待解锁：3</p>
+
+    <div class="achievement-system">
+      <!-- 技能树主干 -->
+      <div class="skill-tree">
+        <div class="tree-trunk"></div>
+        <div class="skill-node unlocked" data-skill="one">
+          <div class="progress-bar" style="--progress: 100%"></div>
+          <div class="tooltip">10K+ 代码行</div>
+        </div>
+        <div class="skill-node locked" data-skill="two">
+          <div class="progress-bar" style="--progress: 55%"></div>
+          <div class="tooltip">3D游戏项目</div>
+        </div>
+        <div class="skill-node locked" data-skill="three">
+          <div class="progress-bar" style="--progress: 40%"></div>
+          <div class="tooltip">全栈项目</div>
+        </div>
+        <div class="skill-node locked" data-skill="four">
+          <div class="progress-bar" style="--progress: 20%"></div>
+          <div class="tooltip">数据可视化专家</div>
+        </div>
+      </div>
+      <!-- 成就展示区 -->
+      <div class="achievement-wall">
+        <div class="badge earned" data-badge="python-master">
+          <div class="badge-content">
+            <div class="badge-icon">🔓</div>
+            <span> 代码行数 10K+</span>
+          </div>
+          <div class="tooltip">
+            <div>🎉</div>
+            <span> 2024年12月达成！ </span>
+          </div>
+        </div>
+        <div class="badge locked" data-badge="threejs">
+          <div class="badge-content">
+            <div class="badge-icon">🔒</div>
+            <span> 3D游戏项目</span>
+          </div>
+          <div class="tooltip">
+            <div>✨</div>
+            <span> 进度：55% </span>
+          </div>
+        </div>
+        <div class="badge locked" data-badge="threejs">
+          <div class="badge-content">
+            <div class="badge-icon">🔒</div>
+            <span> 全栈项目</span>
+          </div>
+          <div class="tooltip">
+            <div>✨</div>
+            <span> 进度：40% </span>
+          </div>
+        </div>
+        <div class="badge locked" data-badge="python-master">
+          <div class="badge-content">
+            <div class="badge-icon">🔒</div>
+            <span>数据可视化专家</span>
+          </div>
+          <div class="tooltip">
+            <div>✨</div>
+            <span> 进度：20% </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 id="其他个人站点">其他个人站点</h3>
+
+    <div class="project-item">
+      <h3>
+        📚 技术博客 |
+        <a style="text-decoration: none" href="https://pengpen1.github.io/"
+          >blog-coderpeng</a
+        >
+      </h3>
+      <ul>
+        <li>📖 内容规模：累计创作59篇技术文章（2024年新增28篇）</li>
+        <li>🎯 核心方向：前端工程化、可视化开发、爬虫实践</li>
+        <li>🚀 访问数据：日均UV 10+，最高单篇阅读量1.2K+</li>
+        <li>💡 特色功能：支持全文搜索、工具箱、3D世界、动画合集</li>
+      </ul>
+      <div class="tech-stack">
+        <span class="tech-tag">Hexo</span>
+        <span class="tech-tag">Markdown扩展</span>
+        <span class="tech-tag">CI/CD</span>
+      </div>
+
+      <div class="personal-site">
+        <img
+          alt="技术博客截图：展示暗黑模式和代码高亮功能"
+          class="site-png"
+          src="./_media/image/blog-coderpeng.png"
+        />
+        <div class="site-overlay">
+          <div class="site-stats">
+            <div class="stat-item">
+              <div class="stat-value">80%</div>
+              <div>访问成功率</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">1.8s</div>
+              <div>平均加载速度</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <h3>
+        🎨 3D作品集 |
+        <a
+          style="text-decoration: none"
+          href="https://pengpen1.github.io/three-demo-site/#/"
+          >three-coderpeng</a
+        >
+      </h3>
+      <ul>
+        <li>🖼️ 展示规模：包含6个交互式3D场景（持续更新）</li>
+        <li>⚡ 性能指标：WebGL渲染帧率稳定50+FPS</li>
+        <li>🎮 交互特性：支持双击进入全屏</li>
+        <li>📦 模型管理：GLTF标准模型库（总量1GB）</li>
+      </ul>
+      <div class="tech-stack">
+        <span class="tech-tag">Three.js r158</span>
+        <span class="tech-tag">GSAP动画</span>
+        <span class="tech-tag">Draco压缩</span>
+      </div>
+
+      <div class="personal-site">
+        <img
+          alt="3D作品集截图：展示粒子系统与物理模拟效果"
+          class="site-png"
+          src="./_media/image/three-coderpeng.png"
+        />
+        <div class="site-overlay">
+          <div class="site-stats">
+            <div class="stat-item">
+              <div class="stat-value">2.7k</div>
+              <div>模型三角面数</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">256MB</div>
+              <div>GPU内存占用</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>公司级项目</h3>
+
+    <div class="project-item">
+      <h3>重庆移动 | 营业厅监测大屏</h3>
+      <ul>
+        <li>
+          📈 性能优化：通过WebGL实例化渲染，实现10万+数据点实时呈现，FPS稳定50+
+        </li>
+        <li>
+          📊 架构设计：支持三级下钻分析，动态加载地理数据（GeoJSON 2.3MB）
+        </li>
+        <li>🔗 实时通信：WebSocket长连接保障数据更新延迟＜200ms</li>
+        <li>🎯 数据合并：支持合并城区，自定义下钻区域</li>
+      </ul>
+      <div class="tech-stack">
+        <span class="tech-tag">Three.js</span>
+        <span class="tech-tag">ECharts</span>
+        <span class="tech-tag">WebSocket</span>
+        <span class="tech-tag">WebGL优化</span>
+      </div>
+      <p align="center">
+        <img
+          alt="blog"
+          class="site-png"
+          loading="lazy"
+          src="https://cdn.jsdelivr.net/gh/pengpen1/blog-images/重庆.png"
+          style="width: 100%; height: auto; object-fit: contain"
+        />
+        <img
+          alt="blog"
+          class="site-png"
+          loading="lazy"
+          src="https://cdn.jsdelivr.net/gh/pengpen1/blog-images/大头.png"
+          style="width: 100%; height: auto; object-fit: contain"
+        />
+      </p>
+    </div>
+
+    <div class="project-item">
+      <h3>陕西移动 | 数据管理系统</h3>
+      <ul>
+        <li>📑 复杂交互：实现多级弹窗嵌套（最多4层），表单字段校验规则120+</li>
+        <li>⚡ 性能优化：首屏加载时间从4.2s降至1.8s（Webpack分包 + 懒加载）</li>
+        <li>📦 状态管理：Vuex模块化管理200+个状态节点，数据响应延迟＜50ms</li>
+        <li>🔐 权限系统：RBAC模型支持6种角色、32种操作权限配置</li>
+      </ul>
+      <div class="tech-stack">
+        <span class="tech-tag">Vue 2.x</span>
+        <span class="tech-tag">Element UI</span>
+        <span class="tech-tag">Webpack</span>
+        <span class="tech-tag">RBAC</span>
+        <span class="tech-tag">性能优化</span>
+      </div>
+      <p align="center">
+        <img
+          alt="blog"
+          class="site-png"
+          loading="lazy"
+          src="https://cdn.jsdelivr.net/gh/pengpen1/blog-images/20231102160400.png"
+          style="width: 100%; height: auto; object-fit: contain"
+        />
+        <img
+          alt="blog"
+          class="site-png"
+          loading="lazy"
+          src="https://cdn.jsdelivr.net/gh/pengpen1/blog-images/20231102161139.png"
+          style="width: 100%; height: auto; object-fit: contain"
+        />
+      </p>
+    </div>
+
+    <h3>技术栈</h3>
+
+    <div class="tech-stacks">
+      <!-- 技能项 -->
+      <div class="skill" data-percent="90" style="--percent: 90%">
+        <div class="skill-icon">🐍</div>
+        <div class="skill-info">
+          <span>Vue</span>
+          <div class="skill-bar"></div>
+        </div>
+      </div>
+
+      <div class="skill" data-percent="85" style="--percent: 85%">
+        <div class="skill-icon">🧠</div>
+        <div class="skill-info">
+          <span>Three.js</span>
+          <div class="skill-bar"></div>
+        </div>
+      </div>
+
+      <div class="skill" data-percent="80" style="--percent: 80%">
+        <div class="skill-icon">📊</div>
+        <div class="skill-info">
+          <span>ECharts</span>
+          <div class="skill-bar"></div>
+        </div>
+      </div>
+
+      <div class="skill" data-percent="55" style="--percent: 55%">
+        <div class="skill-icon">💻</div>
+        <div class="skill-info">
+          <span>Vite</span>
+          <div class="skill-bar"></div>
+        </div>
+      </div>
+    </div>
+
+    <h3>关于我</h3>
+
+    <div
+      style="
+        /* border-left: 3px solid #42b983; */
+        padding-left: 0.5rem;
+        margin-top: 2rem;
+      "
+    >
+      <ul>
+        <li>3年系统建设经验，专注于数据可视化和AI工程化。</li>
+        <li>主导过 1 个大型项⽬的落地实施，参与过 8+项目的核心开发。</li>
+        <li>
+          成功推动公司前端 AI ⼯程化能⼒的运用，RAG
+          知识库系统的建设，可视化技术的升级(ECharts &gt; Three.js)。
+        </li>
+      </ul>
+
+      <p align="center">
+        <img src="https://img.shields.io/badge/version-v1.1.0-blue" loading="lazy" />
+        <img src="https://img.shields.io/badge/QQ-1592193136-blue" loading="lazy" />
+      </p>
+    </div>
+
+    <h2 align="center">
+      coding...
+      <img
+        alt="coding"
+        loading="lazy"
+        src="https://media.giphy.com/media/WUlplcMpOCEmTGBtBW/giphy.gif"
+        width="30"
+      />
+    </h2>
+  </body>
+
+</html>

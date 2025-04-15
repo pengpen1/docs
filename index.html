@@ -2,13 +2,54 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Document</title>
+    <title>coderpeng 的笔记 - AI与可视化开发技术博客</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="description" content="Description" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
     />
+
+    <!-- 页面描述，搜索引擎摘要 -->
+    <meta
+      name="description"
+      content="coderpeng 的技术博客，专注于AI与可视化开发，分享前端工程化、Three.js、ECharts、爬虫等技术干货。"
+    />
+
+    <!-- 关键词，适当添加 -->
+    <meta
+      name="keywords"
+      content="coderpeng, 技术博客, AI, 可视化开发, 前端, Three.js, ECharts, 爬虫, Vue, JavaScript"
+    />
+
+    <!-- 作者 -->
+    <meta name="author" content="coderpeng" />
+
+    <!-- 语言 -->
+    <meta http-equiv="Content-Language" content="zh-CN" />
+
+    <!-- 结构化数据 JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "coderpeng 的笔记",
+        "url": "https://coderpeng.xyz",
+        "description": "专注于AI与可视化开发的技术博客，分享前端工程化、Three.js、ECharts、爬虫等技术干货。",
+        "author": {
+          "@type": "Person",
+          "name": "coderpeng"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "coderpeng",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://coderpeng.xyz/_media/image/book.png"
+          }
+        }
+      }
+    </script>
+
     <link
       rel="stylesheet"
       href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css"
@@ -98,10 +139,10 @@
       }
     </style>
     <!-- Adds the default breadcrumb styling -->
-    <link
+    <!-- <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/docsify-breadcrumb@latest/dist/breadcrumb.min.css"
-    />
+    /> -->
   </head>
   <body>
     <div id="app">
@@ -121,8 +162,9 @@
         subMaxLevel: 2,
         auto2top: true,
         autoHeader: false,
+        homepage: "home.html",
         coverpage: true,
-        // logo: "/_media/icon.png",
+        // logo: "/_media/image/icon.png",
         themeColor: "#42b983",
         search: {
           maxAge: 86400000, // 过期时间，单位毫秒，默认一天
@@ -155,7 +197,8 @@
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
     <!-- Adds the breadcrumb JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/docsify-breadcrumb@latest/dist/index.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/docsify-breadcrumb@latest/dist/index.min.js"></script> -->
     <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+    <script src="./_media/scripts/click-effect2.js"></script>
   </body>
 </html>
