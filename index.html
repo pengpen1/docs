@@ -191,22 +191,42 @@
           crossChapterText: true,
         },
         mermaidConfig: {
-          theme: "dark",
+          theme: "dark", // You can set mermaid theme options here
         },
+        // Add the afterEach hook to re-render Mermaid diagrams
+        hooks: {
+          afterEach: function (html, next) {
+            // Ensure Mermaid is available
+            if (window.mermaid) {
+              // Use mermaid.contentLoaded() for dynamic content,
+              // wrapped in setTimeout to ensure DOM is ready after Docsify updates.
+              setTimeout(() => {
+                try {
+                  // mermaid.contentLoaded() finds and renders new diagrams
+                  mermaid.contentLoaded();
+                } catch (e) {
+                  console.error("Error rendering Mermaid diagrams:", e);
+                }
+              }, 100); // Increased delay to 100ms
+            }
+            // Call next() to continue the hook chain
+            next(html);
+          }
+        }
       };
     </script>
     <!-- Docsify v4 -->
     <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+    <!-- Mermaid library -->
+    <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <!-- Docsify Mermaid plugin -->
+    <script src="//cdn.jsdelivr.net/npm/docsify-mermaid@latest/dist/docsify-mermaid.js"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
     <!-- Adds the breadcrumb JavaScript -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/docsify-breadcrumb@latest/dist/index.min.js"></script> -->
     <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
     <script src="./_media/scripts/click-effect2.js"></script>
     <script src="//unpkg.com/docsify-plantuml/dist/docsify-plantuml.min.js"></script>
-    <!-- Mermaid library -->
-    <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <!-- Docsify Mermaid plugin -->
-    <script src="//cdn.jsdelivr.net/npm/docsify-mermaid@latest/dist/docsify-mermaid.js"></script>
   </body>
 </html>

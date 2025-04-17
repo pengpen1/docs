@@ -105,7 +105,6 @@
   }
 </style>
 
-
 <h1 align="center" id="AI学习路线导航">AI学习路线导航</h1>
 
 <div class="wrap">
@@ -118,7 +117,7 @@
 
   <div class="timeline-item" role="listitem">
     <a href="/#/AI/01_基础与历史" title="基础与历史">01_基础与历史</a>
-    <p>了解AI的发展史与底层逻辑，为后续打好基础</p>
+    <p>了解AI的发展史与底层逻辑，为后续打好基础。如果对机器学习感兴趣，还可以浏览扩展阅读：<a href="/#/AI/01a_机器学习基础" title="机器学习基础">机器学习基础</a>，<a href="/#/AI/01b_深度学习基础" title="深度学习基础">深度学习基础</a>，<a href="/#/AI/01c_NLP基础" title="NLP基础">NLP基础</a></p>
     <div class="timeline-connector"></div>
   </div>
 
