@@ -2,9 +2,9 @@
 
 > 简约而不简单
 
-- [.探索](#site-title)
+- [.探索](/AI/index)
 - [.记录](/log)
-- [.分享](#其他个人站点)
+- [.分享](/AI/01_基础与历史)
 
 [GitHub](https://github.com/pengpen1)
 [启程](#site-title)
