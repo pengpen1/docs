@@ -111,15 +111,10 @@
 
       /* 侧边栏 */
       .sidebar {
-        background-color: #ebf7ee;
-      }
-      .sidebar-toggle {
-        background-color: #ebf7ee;
-        transition: all 3s ease;
-      }
-      body.close .sidebar-toggle {
-        background-color: hsla(0, 0%, 100%, 0.8);
-        transition: all 3s ease;
+        /* Subtle vertical gradient */
+        background: linear-gradient(to bottom, #f5fbf7, #ffffff);
+        /* Inner shadow on the right edge for depth */
+        box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.05);
       }
 
       /* Github格式优化 */
@@ -131,11 +126,7 @@
       }
 
       @media (max-width: 768px) {
-        .sidebar-toggle,
-        body.close .sidebar-toggle {
-          background-color: transparent;
-          transition: color 2s ease;
-        }
+
       }
     </style>
     <!-- Adds the default breadcrumb styling -->
@@ -207,7 +198,7 @@
                 } catch (e) {
                   console.error("Error rendering Mermaid diagrams:", e);
                 }
-              }, 100); // Increased delay to 100ms
+              }, 0); // Increased delay to 100ms
             }
             // Call next() to continue the hook chain
             next(html);
