@@ -163,3 +163,42 @@
   </div>
 </div>
 </div>
+
+<h1 align="center" id="教程导航">教程导航</h1>
+
+<div class="wrap">
+<div class="timeline" role="list" aria-label="AI学习路线导航">
+  <div class="timeline-item" role="listitem">
+    <a href="/#/AI/10_Cline配置Mcp" title="配置Mcp服务器">VSCode中对cline和Copilot配置Mcp服务器</a>
+    <p>跟着教程来感受Agent的魅力吧</p>
+    <div class="timeline-connector"></div>
+  </div>
+  <div class="timeline-item" role="listitem">
+    <a href="/#/AI/07_工作流开发后端功能" title="工作流开发后端功能">搭建基于KAG的法律顾问</a>
+    <p>RAG适合简单知识库场景，KAG适合法律、医疗、教育、金融等复杂推理场景，让我们来体验一下KAG框架的能力吧</p>
+    <div class="timeline-connector"></div>
+  </div>
+</div>
+</div>
+
+<h1 align="center" id="其他">其他</h1>
+
+<div class="wrap">
+<div class="timeline" role="list" aria-label="AI学习路线导航">
+  <div class="timeline-item" role="listitem">
+    <a href="/#/AI/09_AI伦理与安全" title="浅谈我对AI未来的思考">浅谈我对AI以及前端未来的思考</a>
+    <p>人工通用智能 (AGI) 是当前人工智能领域的终极目标，它将彻底改变人类的生活方式。而当前的大模型的聪明都是靠数据堆叠而来的，没有创造能力，但是相当于人类，补充死角，提高效率还是能做到的。</p>
+    <div class="timeline-connector"></div>
+  </div>
+    <div class="timeline-item" role="listitem">
+    <a href="/#/AI/13_AI技术&工具的演变" title="AI技术&工具的演变">AI技术&工具的演变</a>
+    <p>前面我们学了各种理论知识，不妨换个角度来看看演变历程。任何技术的出现一定是为了解决问题，技术的高度一定是层层递进的。</p>
+    <div class="timeline-connector"></div>
+  </div>
+  <div class="timeline-item" role="listitem">
+    <a href="/#/AI/09_AI伦理与安全" title="AI伦理与安全">AI伦理与安全</a>
+    <p>强大的技术往往伴随着潜在的风险和复杂的伦理挑战，那AI带来的伦理与安全问题又是什么呢？</p>
+    <div class="timeline-connector"></div>
+  </div>
+</div>
+</div>

@@ -121,14 +121,12 @@ npm install -g @executeautomation/playwright-mcp-server
 }
 
 // windows配置
-{
   "mcpServers": {
     "playwright": {
-      "command": "npx",
-      "args": ["-y", "@executeautomation/playwright-mcp-server"]
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "@executeautomation/playwright-mcp-server"]
     }
   }
-}
 ```
 
 3.测试
@@ -145,3 +143,35 @@ npm install -g @executeautomation/playwright-mcp-server
 
 ![](https://cdn.jsdelivr.net/gh/pengpen1/blog-images/coploit.png)
 
+
+
+## 扩展
+
+**npx不是执行命令的吗？为什么还能用于安装mcp服务器？**
+
+大家熟知的npx的作用之一就是帮助我们简对项目内部(*node_modules*)安装的模块的调用:
+
+```
+例如：
+./node_modules/.bin/mocha -v
+
+npx简化:
+npx mocha -v
+```
+
+`npx` 还有一个重要的特性：**当尝试执行一个本地尚未安装的包时，`npx` 会先将这个包（及其依赖）下载到一个临时的位置，然后执行它，执行完毕后通常不会将包保留在全局或项目中（除非明确指定了安装）。**
+
+例如：
+
+`npx @agentdeskai/browser-tools-mcp@latest`:
+
+- `npx @agentdeskai/browser-tools-mcp@latest` 首先检查系统中（包括当前项目和全局环境）是否已经安装了 `@agentdeskai/browser-tools-mcp` 这个包。
+- 如果没找到，它会提示你是否需要安装（"Need to install the following packages: ... Ok to proceed? (y)"）。
+- 你输入 `y` 确认后，`npx` 就会**临时下载**并安装 `@agentdeskai/browser-tools-mcp` 包及其依赖项。
+- 下载完成后，`npx` 会**执行**该包预设的命令，然后运行这个包里预定义的启动命令，从而启动服务器。
+
+
+
+**为什么不用 `npm install`?**
+
+因为我们的主要目的是提供一个可执行文件或服务，而不是作为另一个项目的编程依赖。
