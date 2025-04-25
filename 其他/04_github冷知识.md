@@ -190,6 +190,11 @@ https://api.github.com/repos/activepieces/activepieces
 - 你可以通过 GitHub Pages 免费托管静态网站，只需将内容放在 `gh-pages` 分支或 `docs/` 文件夹。
 
 
+### GitHub Copilot
+可以在.github/copilot-instructions.md中自定义提示词，帮助 Copilot 更好地理解你的意图。
+https://vscode.js.cn/docs/copilot/copilot-customization
+
+
 
 ### 真冷知识
 
