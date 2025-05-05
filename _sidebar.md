@@ -7,9 +7,12 @@
   - [HTML](/前端/html/01_HTML5新增内容.md)
   - [CSS](/前端/css/01_弹性盒子超宽现象.md)
   - [JavaScript](/前端/js/01_数据类型.md)
+  - [TypeScript](/前端/typeScript/01_学而思源.md)
   - [Vue](/前端/vue/01_test.md)
+  - [React](/前端/react/01_学而思源.md)
   - [Three.js](/前端/threejs/01_Introduction.md)
   - [小程序](/前端/minProgram/01_Introduction.md)
+  - [桌面端(electron)](/前端/electron/01_介绍.md)
   - [前端安全](/前端/safety/01_URL编码.md)
   - [性能优化](/前端/capability/01_test.md)
 
@@ -80,6 +83,7 @@
   - [05_好用网站和工具分享](/其他/05_好用网站和工具分享.md)
   - [06_自我反省记录](/其他/06_自我反省记录.md)
   - [07_油猴脚本推荐](/其他/07_油猴脚本推荐.md)
+  - [08_如何成为活地图](/其他/08_如何成为活地图.md)
 
 - [帮助](guide.md "帮助文档")
 - [日志](log.md "日志文档")
