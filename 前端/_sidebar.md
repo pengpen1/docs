@@ -40,4 +40,4 @@
    - [01_性能优化](/前端/capability/01_test.md)
 
 - 其他
-   - [01_其他](/前端/other/01_速通uniapp.md)
+   - [01_速通uniapp](/前端/other/01_速通uniapp.md)
