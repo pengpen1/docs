@@ -568,6 +568,174 @@
     </style>
 
     <style>
+      /* 气泡导航样式 - 更新版 */
+      .bubble-navigation {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px; /* 气泡间距 */
+        padding: 40px 20px;
+        /* margin-bottom: 40px; */
+        position: relative;
+        overflow: hidden;
+      }
+
+      .bubble-link {
+        padding: 15px 25px;
+        border-radius: 50px; /* 圆润的气泡形状 */
+        color: white; /* 默认文字颜色 */
+        text-decoration: none;
+        /* font-weight: bold; */
+        font-size: 1em;
+        transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), background 0.4s ease; /* 平滑过渡 */
+        animation: floatBubble 6s ease-in-out infinite;
+        position: relative;
+        border: 2px solid transparent; /* 添加边框以便悬停时改变 */
+      }
+
+      .bubble-link:hover {
+        transform: scale(1.12) translateY(-6px); /* 悬停时放大并上移更多 */
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25); /* 悬停时阴影更深 */
+        border-color: rgba(255, 255, 255, 0.7); /* 悬停时显示白色半透明边框 */
+      }
+
+      /* --- 个性化气泡颜色 --- */
+      /* 1. 前端 (蓝绿渐变) */
+      .bubble-link:nth-child(1) {
+        background: linear-gradient(135deg, #00f2fe, #00f2fe); /* 天蓝到青色 */
+        color: #1a2a4a; /* 深蓝文字 */
+        animation-delay: 0s;
+      }
+      .bubble-link:nth-child(1):hover { background: linear-gradient(135deg, #00f2fe, #4facfe); }
+
+      /* 2. AI+ (紫粉渐变) */
+      .bubble-link:nth-child(2) {
+        background: linear-gradient(135deg, #f5576c, #f5576c); /* 紫色到粉红 */
+        color: #ffffff;
+        animation-delay: -0.5s;
+      }
+      .bubble-link:nth-child(2):hover { background: linear-gradient(135deg, #f5576c, #f093fb); }
+
+      /* 3. 后端 (橙黄渐变) */
+      .bubble-link:nth-child(3) {
+        background: linear-gradient(135deg, #fda085, #fda085); /* 亮黄到橙色 */
+        color: #5c3d03; /* 深棕色文字 */
+        animation-delay: -1s;
+      }
+      .bubble-link:nth-child(3):hover { background: linear-gradient(135deg, #fda085, #f6d365); }
+
+      /* 4. 算法 (青蓝渐变) */
+      .bubble-link:nth-child(4) {
+        background: linear-gradient(135deg, #8fd3f4, #8fd3f4); /* 青色到淡蓝 */
+        color: #0b4f6c; /* 深青色文字 */
+        animation-delay: -1.5s;
+      }
+      .bubble-link:nth-child(4):hover { background: linear-gradient(135deg, #8fd3f4, #84fab0); }
+
+      /* 5. 爬虫 (灰黑渐变) */
+      .bubble-link:nth-child(5) {
+        background: linear-gradient(135deg, #696969, #696969); /* 深灰到浅灰 */
+        color: #ffffff;
+        animation-delay: -2s;
+      }
+      .bubble-link:nth-child(5):hover { background: linear-gradient(135deg, #696969, #a9a9a9); }
+
+      /* 6. 设计模式 (蓝紫渐变) */
+      .bubble-link:nth-child(6) {
+        background: linear-gradient(135deg, #764ba2, #764ba2); /* 原始蓝紫 */
+        color: #ffffff;
+        animation-delay: -2.5s;
+      }
+      .bubble-link:nth-child(6):hover { background: linear-gradient(135deg, #764ba2, #667eea); }
+
+      /* 7. 工具 (绿黄渐变) */
+      .bubble-link:nth-child(7) {
+        background: linear-gradient(135deg, #deecdd, #deecdd); /* 淡绿到米白 */
+        color: #3a5a40; /* 深绿色文字 */
+        animation-delay: -3s;
+      }
+       .bubble-link:nth-child(7):hover { background: linear-gradient(135deg, #deecdd, #c1dfc4); }
+
+      /* 8. UI设计 (粉橙渐变) */
+      .bubble-link:nth-child(8) {
+        background: linear-gradient(135deg, #ffcc99, #ffcc99); /* 粉红到淡橙 */
+        color: #8b4513; /* 棕色文字 */
+        animation-delay: -3.5s;
+      }
+      .bubble-link:nth-child(8):hover { background: linear-gradient(135deg, #ffcc99, #ffc0cb); }
+
+      /* 9. 一些想法 (淡紫蓝渐变) */
+      .bubble-link:nth-child(9) {
+        background: linear-gradient(135deg, #aed6f1, #aed6f1); /* 淡紫到淡蓝 */
+        color: #4a235a; /* 深紫色文字 */
+        animation-delay: -4s;
+      }
+      .bubble-link:nth-child(9):hover { background: linear-gradient(135deg, #aed6f1, #d7bde2); }
+
+      /* 10. 其他 (灰蓝渐变) */
+      .bubble-link:nth-child(10) {
+        background: linear-gradient(135deg, #2c3e50, #2c3e50); /* 银灰到深蓝灰 */
+        color: #ffffff;
+        animation-delay: -4.5s;
+      }
+      .bubble-link:nth-child(10):hover { background: linear-gradient(135deg, #2c3e50, #bdc3c7); }
+
+
+      @keyframes floatBubble {
+        0%, 100% {
+          transform: translateY(0) translateX(0) rotate(0deg) scale(1);
+        }
+        25% {
+          transform: translateY(-10px) translateX(5px) rotate(5deg) scale(1.02);
+        }
+        50% {
+          transform: translateY(0) translateX(-5px) rotate(0deg) scale(1);
+        }
+        75% {
+          transform: translateY(5px) translateX(0px) rotate(-5deg) scale(0.98);
+        }
+      }
+
+       @media (max-width: 768px) {
+         .bubble-link {
+            padding: 12px 20px;
+            font-size: 0.9em;
+         }
+         .bubble-navigation {
+            gap: 15px;
+            padding: 30px 15px;
+         }
+       }
+
+      @keyframes floatBubble {
+        0%,
+        100% {
+          transform: translateY(0) translateX(0) rotate(0deg) scale(1);
+        }
+        25% {
+          transform: translateY(-10px) translateX(5px) rotate(5deg) scale(1.02);
+        }
+        50% {
+          transform: translateY(0) translateX(-5px) rotate(0deg) scale(1);
+        }
+        75% {
+          transform: translateY(5px) translateX(0px) rotate(-5deg) scale(0.98);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .bubble-link {
+          padding: 12px 20px;
+          font-size: 0.9em;
+        }
+        .bubble-navigation {
+          gap: 15px;
+          padding: 30px 15px;
+        }
+      }
+    </style>
+
+    <style>
       /* 技术栈 */
       @keyframes skillReveal {
         from {
@@ -656,11 +824,16 @@
     <h1 align="center" id="site-title">coderpeng 的笔记</h1>
 
     <p align="center">
-      <span style="margin-bottom: 1rem;display: inline-block;">
+      <span style="margin-bottom: 1rem; display: inline-block">
         我是coderpeng，一位喜欢探索的开发者，目前专注于AI+可视化开发。 </span
       ><br />
-      <span style="animation: shake 1.2s ease-in-out infinite;display: inline-block;"
-      >💐</span>
+      <span
+        style="
+          animation: shake 1.2s ease-in-out infinite;
+          display: inline-block;
+        "
+        >💐</span
+      >
       <span> 欢迎来到我的二进制世界！ </span><br />
       <span> 愿君生活愉快，四季如春！ </span>
     </p>
@@ -737,58 +910,89 @@
     </p>
 
     <details>
-      <summary>点击展开目录结构</summary>
+      <summary>点击展开目录结构</summary>你 
       <pre><code>
-        ├─.gitlab-ci.yml | Gitee自动化部署脚本
-        ├─.nojekyll  | 阻止 GitHub Pages 忽略掉下划线开头的文件
-        ├─favicon.ico | 图标
-        ├─guide.md | 本站帮助文件
-        ├─index.html | 入口文件
-        ├─README.md | 主页
-        ├─_coverpage.md | 封面
-        ├─log.md | 更新日志
-        ├─_navbar.md | 顶部导航配置
-        ├─_sidebar.md | 侧边导航配置
-        ├─AI+
-        | ├─01_检索内容增强(RAG).md
-        | ...
-        ├─算法
-        | ├─01_两数之和.md
-        | ...
-        ├─爬虫
-        | ├─01_京东抢购脚本.md
-        | ...
-        ├─工具
-        | ├─01_自定义路径复制脚本.md
-        | ...
-        ├─后端
-        | ├─01_请求中的MIME类型.md
-        | ...
-        ├─前端
-        | ├─_sidebar.md | 下钻菜单配置页面
-        | ├─vue
-        | ├─threejs
-        | ├─safety | 前端安全相关
-        | ├─minProgram | 小程序相关
-        | ├─js
-        | ├─html
-        | ├─css
-        | ├─capability | 性能优化相关
-        ├─其他
-        | ├─01_计算机网络知识汇总.md
-        | ...
-        ├─_media | 存放静态资源的地方
-        | ├─icon.png
-        | ...
+        ├─ .nojekyll             | 阻止 GitHub Pages 忽略掉下划线开头的文件
+        ├─ favicon.ico           | 网站图标
+        ├─ guide.md              | 本站帮助文件
+        ├─ home.html             | 替代 README.md 作为首页
+        ├─ index.html            | Docsify 入口文件
+        ├─ log.md                | 更新日志
+        ├─ my404.md              | 404 页面
+        ├─ README.md             | 项目说明 (备用)
+        ├─ _coverpage.md         | Docsify 封面配置
+        ├─ _navbar.md            | Docsify 顶部导航配置
+        ├─ _sidebar.md           | Docsify 侧边栏导航配置
+        ├─ AI/                   | AI 相关笔记
+        │  ├─ index.md           | AI 学习路线导航
+        │  ├─ 01_基础与历史.md
+        │  ├─ ... (其他 AI 相关文件)
+        ├─ UI设计/               | UI 设计相关
+        │  └─ 01_概念版.md
+        ├─ 一些想法/             | 个人想法记录
+        │  └─ 01_css练习游戏.md
+        ├─ 其他/                 | 其他分类笔记
+        │  ├─ 01_计算机网络知识汇总.md
+        │  └─ ... (其他文件)
+        ├─ 前端/                 | 前端技术笔记
+        │  ├─ _sidebar.md        | 前端子目录侧边栏
+        │  ├─ capability/
+        │  ├─ css/
+        │  ├─ electron/
+        │  ├─ html/
+        │  ├─ js/
+        │  ├─ minProgram/
+        │  ├─ other/
+        │  ├─ react/
+        │  ├─ safety/
+        │  ├─ threejs/
+        │  ├─ typeScript/
+        │  └─ vue/
+        ├─ 后端/                 | 后端技术笔记
+        │  ├─ 01_请求中的MIME类型.md
+        │  └─ ... (其他文件)
+        ├─ 工具/                 | 开发工具相关
+        │  └─ 01_自定义路径复制脚本.md
+        ├─ 爬虫/                 | 爬虫相关笔记
+        │  ├─ 01_京东抢购脚本.md
+        │  └─ ... (其他文件)
+        ├─ 算法/                 | 算法学习笔记
+        │  ├─ 01_两数之和.md
+        │  └─ ... (其他文件)
+        ├─ 设计模式/             | 设计模式学习笔记
+        │  ├─ index.md           | 设计模式学习路线导航
+        │  ├─ 00_引言.md
+        │  ├─ 01_设计原则.md
+        │  ├─ ... (23 个设计模式文件)
+        │  └─ 23_访问者模式.md
+        └─ _media/               | 静态资源 (图片, CSS, JS)
+           ├─ css/
+           ├─ image/
+           └─ scripts/
       </code></pre>
     </details>
 
-    <div class="split-box">
+    <!-- 气泡导航 -->
+    <h3>气泡导航</h3>
+    <div class="bubble-navigation">
+      <a href="#/前端/html/01_HTML5新增内容" class="bubble-link">前端</a>
+      <a href="#/AI/index" class="bubble-link">AI+</a>
+      <a href="#/后端/01_请求中的MIME类型" class="bubble-link">后端</a>
+      <a href="#/算法/01_两数之和" class="bubble-link">算法</a>
+      <a href="#/爬虫/01_京东抢购脚本" class="bubble-link">爬虫</a>
+      <a href="#/设计模式/index" class="bubble-link">设计模式</a>
+      <a href="#/工具/01_自定义路径复制脚本" class="bubble-link">工具</a>
+      <a href="#/UI设计/01_概念版" class="bubble-link">UI设计</a>
+      <a href="#/一些想法/01_css练习游戏" class="bubble-link">一些想法</a>
+      <a href="#/其他/01_计算机网络知识汇总" class="bubble-link">其他</a>
+    </div>
+
+    <!-- <div class="split-box">
       <div class="bounce-ball" style="--i: 1"></div>
       <div class="bounce-ball" style="--i: 2"></div>
       <div class="bounce-ball" style="--i: 3"></div>
       <div class="bounce-ball" style="--i: 4"></div>
-    </div>
+    </div> -->
 
     <h3>成就树</h3>
 
@@ -1090,8 +1294,14 @@
       </ul>
 
       <p align="center">
-        <img src="https://img.shields.io/badge/version-v1.1.0-blue" loading="lazy" />
-        <img src="https://img.shields.io/badge/QQ-1592193136-blue" loading="lazy" />
+        <img
+          src="https://img.shields.io/badge/version-v1.1.0-blue"
+          loading="lazy"
+        />
+        <img
+          src="https://img.shields.io/badge/QQ-1592193136-blue"
+          loading="lazy"
+        />
       </p>
     </div>
 
@@ -1105,5 +1315,4 @@
       />
     </h2>
   </body>
-
 </html>
