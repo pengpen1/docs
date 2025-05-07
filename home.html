@@ -581,13 +581,15 @@
       }
 
       .bubble-link {
-        padding: 15px 25px;
+        padding: 12px 22px;
         border-radius: 50px; /* 圆润的气泡形状 */
         color: white; /* 默认文字颜色 */
         text-decoration: none;
         /* font-weight: bold; */
         font-size: 1em;
-        transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), background 0.4s ease; /* 平滑过渡 */
+        transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+          box-shadow 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+          background 0.4s ease; /* 平滑过渡 */
         animation: floatBubble 6s ease-in-out infinite;
         position: relative;
         border: 2px solid transparent; /* 添加边框以便悬停时改变 */
@@ -606,7 +608,9 @@
         color: #1a2a4a; /* 深蓝文字 */
         animation-delay: 0s;
       }
-      .bubble-link:nth-child(1):hover { background: linear-gradient(135deg, #00f2fe, #4facfe); }
+      .bubble-link:nth-child(1):hover {
+        background: linear-gradient(135deg, #00f2fe, #4facfe);
+      }
 
       /* 2. AI+ (紫粉渐变) */
       .bubble-link:nth-child(2) {
@@ -614,7 +618,9 @@
         color: #ffffff;
         animation-delay: -0.5s;
       }
-      .bubble-link:nth-child(2):hover { background: linear-gradient(135deg, #f5576c, #f093fb); }
+      .bubble-link:nth-child(2):hover {
+        background: linear-gradient(135deg, #f5576c, #f093fb);
+      }
 
       /* 3. 后端 (橙黄渐变) */
       .bubble-link:nth-child(3) {
@@ -622,7 +628,9 @@
         color: #5c3d03; /* 深棕色文字 */
         animation-delay: -1s;
       }
-      .bubble-link:nth-child(3):hover { background: linear-gradient(135deg, #fda085, #f6d365); }
+      .bubble-link:nth-child(3):hover {
+        background: linear-gradient(135deg, #fda085, #f6d365);
+      }
 
       /* 4. 算法 (青蓝渐变) */
       .bubble-link:nth-child(4) {
@@ -630,7 +638,9 @@
         color: #0b4f6c; /* 深青色文字 */
         animation-delay: -1.5s;
       }
-      .bubble-link:nth-child(4):hover { background: linear-gradient(135deg, #8fd3f4, #84fab0); }
+      .bubble-link:nth-child(4):hover {
+        background: linear-gradient(135deg, #8fd3f4, #84fab0);
+      }
 
       /* 5. 爬虫 (灰黑渐变) */
       .bubble-link:nth-child(5) {
@@ -638,7 +648,9 @@
         color: #ffffff;
         animation-delay: -2s;
       }
-      .bubble-link:nth-child(5):hover { background: linear-gradient(135deg, #696969, #a9a9a9); }
+      .bubble-link:nth-child(5):hover {
+        background: linear-gradient(135deg, #696969, #a9a9a9);
+      }
 
       /* 6. 设计模式 (蓝紫渐变) */
       .bubble-link:nth-child(6) {
@@ -646,7 +658,9 @@
         color: #ffffff;
         animation-delay: -2.5s;
       }
-      .bubble-link:nth-child(6):hover { background: linear-gradient(135deg, #764ba2, #667eea); }
+      .bubble-link:nth-child(6):hover {
+        background: linear-gradient(135deg, #764ba2, #667eea);
+      }
 
       /* 7. 工具 (绿黄渐变) */
       .bubble-link:nth-child(7) {
@@ -654,7 +668,9 @@
         color: #3a5a40; /* 深绿色文字 */
         animation-delay: -3s;
       }
-       .bubble-link:nth-child(7):hover { background: linear-gradient(135deg, #deecdd, #c1dfc4); }
+      .bubble-link:nth-child(7):hover {
+        background: linear-gradient(135deg, #deecdd, #c1dfc4);
+      }
 
       /* 8. UI设计 (粉橙渐变) */
       .bubble-link:nth-child(8) {
@@ -662,7 +678,9 @@
         color: #8b4513; /* 棕色文字 */
         animation-delay: -3.5s;
       }
-      .bubble-link:nth-child(8):hover { background: linear-gradient(135deg, #ffcc99, #ffc0cb); }
+      .bubble-link:nth-child(8):hover {
+        background: linear-gradient(135deg, #ffcc99, #ffc0cb);
+      }
 
       /* 9. 一些想法 (淡紫蓝渐变) */
       .bubble-link:nth-child(9) {
@@ -670,19 +688,27 @@
         color: #4a235a; /* 深紫色文字 */
         animation-delay: -4s;
       }
-      .bubble-link:nth-child(9):hover { background: linear-gradient(135deg, #aed6f1, #d7bde2); }
+      .bubble-link:nth-child(9):hover {
+        background: linear-gradient(135deg, #aed6f1, #d7bde2);
+      }
 
       /* 10. 其他 (灰蓝渐变) */
       .bubble-link:nth-child(10) {
-        background: linear-gradient(135deg, #2c3e50, #2c3e50); /* 银灰到深蓝灰 */
+        background: linear-gradient(
+          135deg,
+          #2c3e50,
+          #2c3e50
+        ); /* 银灰到深蓝灰 */
         color: #ffffff;
         animation-delay: -4.5s;
       }
-      .bubble-link:nth-child(10):hover { background: linear-gradient(135deg, #2c3e50, #bdc3c7); }
-
+      .bubble-link:nth-child(10):hover {
+        background: linear-gradient(135deg, #2c3e50, #bdc3c7);
+      }
 
       @keyframes floatBubble {
-        0%, 100% {
+        0%,
+        100% {
           transform: translateY(0) translateX(0) rotate(0deg) scale(1);
         }
         25% {
@@ -696,16 +722,16 @@
         }
       }
 
-       @media (max-width: 768px) {
-         .bubble-link {
-            padding: 12px 20px;
-            font-size: 0.9em;
-         }
-         .bubble-navigation {
-            gap: 15px;
-            padding: 30px 15px;
-         }
-       }
+      @media (max-width: 768px) {
+        .bubble-link {
+          padding: 12px 20px;
+          font-size: 0.9em;
+        }
+        .bubble-navigation {
+          gap: 15px;
+          padding: 30px 15px;
+        }
+      }
 
       @keyframes floatBubble {
         0%,
@@ -867,7 +893,7 @@
 
     <h3>目录结构</h3>
 
-    <p align="center" style="text-align: center">
+    <p align="center" style="text-align: left">
       内容涵盖：
       <a href="#/AI/01_检索内容增强(RAG)"
         ><img
@@ -910,7 +936,8 @@
     </p>
 
     <details>
-      <summary>点击展开目录结构</summary>你 
+      <summary style="cursor: pointer;">点击展开目录结构</summary>
+
       <pre><code>
         ├─ .nojekyll             | 阻止 GitHub Pages 忽略掉下划线开头的文件
         ├─ favicon.ico           | 网站图标
@@ -974,17 +1001,36 @@
 
     <!-- 气泡导航 -->
     <h3>气泡导航</h3>
+    <div>总计：67 篇文章</div>
     <div class="bubble-navigation">
-      <a href="#/前端/html/01_HTML5新增内容" class="bubble-link">前端</a>
-      <a href="#/AI/index" class="bubble-link">AI+</a>
-      <a href="#/后端/01_请求中的MIME类型" class="bubble-link">后端</a>
-      <a href="#/算法/01_两数之和" class="bubble-link">算法</a>
-      <a href="#/爬虫/01_京东抢购脚本" class="bubble-link">爬虫</a>
-      <a href="#/设计模式/index" class="bubble-link">设计模式</a>
-      <a href="#/工具/01_自定义路径复制脚本" class="bubble-link">工具</a>
-      <a href="#/UI设计/01_概念版" class="bubble-link">UI设计</a>
-      <a href="#/一些想法/01_css练习游戏" class="bubble-link">一些想法</a>
-      <a href="#/其他/01_计算机网络知识汇总" class="bubble-link">其他</a>
+      <a href="#/前端/html/01_HTML5新增内容" class="bubble-link">
+        前端 (<small>17</small>)
+      </a>
+      <a href="#/AI/index" class="bubble-link">AI+(<small>17</small>)</a>
+      <a href="#/后端/01_请求中的MIME类型" class="bubble-link"
+        >后端 (<small>3</small>)</a
+      >
+      <a href="#/算法/01_两数之和" class="bubble-link"
+        >算法 (<small>5</small>)</a
+      >
+      <a href="#/爬虫/01_京东抢购脚本" class="bubble-link"
+        >爬虫 (<small>7</small>)</a
+      >
+      <a href="#/设计模式/index" class="bubble-link"
+        >设计模式 (<small>5</small>)</a
+      >
+      <a href="#/工具/01_自定义路径复制脚本" class="bubble-link"
+        >工具 (<small>1</small>)</a
+      >
+      <a href="#/UI设计/01_概念版" class="bubble-link"
+        >UI设计 (<small>1</small>)</a
+      >
+      <a href="#/一些想法/01_css练习游戏" class="bubble-link"
+        >一些想法 (<small>1</small>)</a
+      >
+      <a href="#/其他/01_计算机网络知识汇总" class="bubble-link"
+        >其他 (<small>9</small>)</a
+      >
     </div>
 
     <!-- <div class="split-box">
@@ -1295,7 +1341,7 @@
 
       <p align="center">
         <img
-          src="https://img.shields.io/badge/version-v1.1.0-blue"
+          src="https://img.shields.io/badge/version-v1.3.0-blue"
           loading="lazy"
         />
         <img

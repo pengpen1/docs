@@ -1,4 +1,4 @@
-# coderpeng 的笔记 <small>1.2</small>
+# coderpeng 的笔记 <small>1.3.0</small>
 
 > 简约而不简单
 
