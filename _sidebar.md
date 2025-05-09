@@ -37,12 +37,14 @@
   - [13_AI技术&工具的演变](/AI/13_AI技术&工具的演变.md)
   - [14_提示词工程](/AI/14_提示词工程.md)
   - [15_prompt注入](/AI/15_prompt注入.md)
+  - [16_LangChain实现智能体API](/AI/16_LangChain实现智能体API.md)
 
 - 后端
 
   - [01_请求中的MIME类型](/后端/01_请求中的MIME类型.md)
   - [02_cf+Vercel+域名解析](/后端/02_将Vercel挂载到Cloudflare.md)
   - [03_本地nginx模拟线上环境](/后端/03_本地nginx模拟线上环境.md)
+  - [04_部署博客从零开始](/后端/04_部署博客从零开始.md)
 
 - 算法
 

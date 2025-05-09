@@ -183,27 +183,8 @@
         },
         mermaidConfig: {
           theme: "dark", // You can set mermaid theme options here
-        },
-        // Add the afterEach hook to re-render Mermaid diagrams
-        hooks: {
-          afterEach: function (html, next) {
-            // Ensure Mermaid is available
-            if (window.mermaid) {
-              // Use mermaid.contentLoaded() for dynamic content,
-              // wrapped in setTimeout to ensure DOM is ready after Docsify updates.
-              setTimeout(() => {
-                try {
-                  // mermaid.contentLoaded() finds and renders new diagrams
-                  mermaid.contentLoaded();
-                } catch (e) {
-                  console.error("Error rendering Mermaid diagrams:", e);
-                }
-              }, 0); // Increased delay to 100ms
-            }
-            // Call next() to continue the hook chain
-            next(html);
-          }
         }
+        // Removed custom hook for Mermaid, as docsify-mermaid plugin should handle it.
       };
     </script>
     <!-- Docsify v4 -->
