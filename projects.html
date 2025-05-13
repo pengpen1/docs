@@ -275,7 +275,8 @@
 
       /* .skill-node.unlocked {
     border: 3px solid #42b983;
-  } */
+
+} \*/
 
       .skill-node.locked {
         filter: grayscale(0.8);
@@ -844,195 +845,323 @@
         }
       }
     </style>
+
   </head>
 
   <body>
-    <h1 align="center" id="site-title">coderpeng 的笔记</h1>
+    <h1 align="center" id="关于我">关于我</h1>
 
-    <p align="center">
-      <span style="margin-bottom: 1rem; display: inline-block">
-        我是coderpeng，一位喜欢探索的开发者，目前专注于AI+可视化开发。 </span
-      ><br />
-      <span
-        style="
-          animation: shake 1.2s ease-in-out infinite;
-          display: inline-block;
-        "
-        >💐</span
-      >
-      <span> 欢迎来到我的二进制世界！ </span><br />
-      <span> 愿君生活愉快，四季如春！ </span>
-    </p>
+    <h3>成就树</h3>
 
-    <div class="parallax-grid">
-      <div class="card-layer" style="--depth: 1">
-        <img
-          src="./_media/image/start.jpg"
-          alt="背景层"
-          style="max-width: 800px; width: 65%; height: 40vh; object-fit: cover"
-        />
-        <div class="card-text">喜欢摄影、骑车、跑步，保存记忆，直到永远</div>
+    <div class="timeline-container">
+      <div class="timeline-path"></div>
+
+      <div class="timeline-node" style="--pos: 0">
+        <div class="node-badge">🎓 2023</div>
+        <div class="node-popup">走进计算机世界的大门</div>
       </div>
-      <div class="card-layer" style="--depth: 2">
-        <img
-          src="./_media/image/bike.jpg"
-          alt="中间层"
-          style="max-width: 800px; width: 65%; height: 40vh; object-fit: cover"
-        />
-        <div class="card-text"></div>
+
+      <div class="timeline-node" style="--pos: 0.45">
+        <div class="node-badge">💻 2024</div>
+        <div class="node-popup">第一个人项目上线</div>
       </div>
-      <div class="card-layer" style="--depth: 3">
-        <img
-          src="./_media/image/run.jpg"
-          alt="前景层"
-          style="max-width: 800px; width: 65%; height: 40vh; object-fit: cover"
-        />
-        <div class="card-text"></div>
+
+      <div class="timeline-node" style="--pos: 0.93">
+        <div class="node-badge">🚀 2025</div>
+        <div class="node-popup">AI可视化系统研发中</div>
       </div>
     </div>
 
-    <h3>目录结构</h3>
+    <p align="left">已解锁：1，待解锁：3</p>
 
-    <p align="center" style="text-align: left">
-      内容涵盖：
-      <a href="#/AI/01_检索内容增强(RAG)"
-        ><img
-          src="https://img.shields.io/badge/-AI+-black?style=flat-square&logo=openAI"
-          style="vertical-align: middle"
-      /></a>
-      <a href="#/前端/threejs/01_Introduction"
-        ><img
-          src="https://img.shields.io/badge/-ThreeJS-black?style=flat-square&logo=Three.js"
-          style="vertical-align: middle"
-      /></a>
-      <img
-        src="https://img.shields.io/badge/-HTML-darkgreen?style=flat-square&logo=html5"
-        style="vertical-align: middle"
-      />
-      <img
-        src="https://img.shields.io/badge/-CSS-darkgreen?style=flat-square&logo=css3"
-        style="vertical-align: middle"
-      />
-      <img
-        src="https://img.shields.io/badge/-JavaScript-darkgreen?style=flat-square&logo=javascript"
-        style="vertical-align: middle"
-      />
-      <img
-        src="https://img.shields.io/badge/-Vuejs-darkgreen?style=flat-square&logo=Vue.js"
-        style="vertical-align: middle"
-      />
-      <img
-        src="https://img.shields.io/badge/-NodeJs-darkgreen?style=flat-square&logo=Node.js"
-        style="vertical-align: middle"
-      />
-      <img
-        src="https://img.shields.io/badge/-Python-darkgreen?style=flat-square&logo=Python"
-        style="vertical-align: middle"
-      />
-      <img
-        src="https://img.shields.io/badge/-Git-darkgreen?style=flat-square&logo=Git"
-        style="vertical-align: middle"
-      />
-    </p>
-
-    <details>
-      <summary style="cursor: pointer;">点击展开目录结构</summary>
-
-      <pre><code>
-        ├─ .nojekyll             | 阻止 GitHub Pages 忽略掉下划线开头的文件
-        ├─ favicon.ico           | 网站图标
-        ├─ guide.md              | 本站帮助文件
-        ├─ home.html             | 替代 README.md 作为首页
-        ├─ index.html            | Docsify 入口文件
-        ├─ log.md                | 更新日志
-        ├─ my404.md              | 404 页面
-        ├─ README.md             | 项目说明 (备用)
-        ├─ _coverpage.md         | Docsify 封面配置
-        ├─ _navbar.md            | Docsify 顶部导航配置
-        ├─ _sidebar.md           | Docsify 侧边栏导航配置
-        ├─ AI/                   | AI 相关笔记
-        │  ├─ index.md           | AI 学习路线导航
-        │  ├─ 01_基础与历史.md
-        │  ├─ ... (其他 AI 相关文件)
-        ├─ UI设计/               | UI 设计相关
-        │  └─ 01_概念版.md
-        ├─ 一些想法/             | 个人想法记录
-        │  └─ 01_css练习游戏.md
-        ├─ 其他/                 | 其他分类笔记
-        │  ├─ 01_计算机网络知识汇总.md
-        │  └─ ... (其他文件)
-        ├─ 前端/                 | 前端技术笔记
-        │  ├─ _sidebar.md        | 前端子目录侧边栏
-        │  ├─ capability/
-        │  ├─ css/
-        │  ├─ electron/
-        │  ├─ html/
-        │  ├─ js/
-        │  ├─ minProgram/
-        │  ├─ other/
-        │  ├─ react/
-        │  ├─ safety/
-        │  ├─ threejs/
-        │  ├─ typeScript/
-        │  └─ vue/
-        ├─ 后端/                 | 后端技术笔记
-        │  ├─ 01_请求中的MIME类型.md
-        │  └─ ... (其他文件)
-        ├─ 工具/                 | 开发工具相关
-        │  └─ 01_自定义路径复制脚本.md
-        ├─ 爬虫/                 | 爬虫相关笔记
-        │  ├─ 01_京东抢购脚本.md
-        │  └─ ... (其他文件)
-        ├─ 算法/                 | 算法学习笔记
-        │  ├─ 01_两数之和.md
-        │  └─ ... (其他文件)
-        ├─ 设计模式/             | 设计模式学习笔记
-        │  ├─ index.md           | 设计模式学习路线导航
-        │  ├─ 00_引言.md
-        │  ├─ 01_设计原则.md
-        │  ├─ ... (23 个设计模式文件)
-        │  └─ 23_访问者模式.md
-        └─ _media/               | 静态资源 (图片, CSS, JS)
-           ├─ css/
-           ├─ image/
-           └─ scripts/
-      </code></pre>
-    </details>
-
-    <!-- 气泡导航 -->
-    <h3>气泡导航</h3>
-    <div>总计：90 篇文章</div>
-    <div class="bubble-navigation">
-      <a href="#/前端/html/01_HTML5新增内容" class="bubble-link">
-        前端 (<small>17</small>)
-      </a>
-      <a href="#/AI/index" class="bubble-link">AI+(<small>20</small>)</a>
-      <a href="#/后端/01_请求中的MIME类型" class="bubble-link"
-        >后端 (<small>5</small>)</a
-      >
-      <a href="#/算法/01_两数之和" class="bubble-link"
-        >算法 (<small>5</small>)</a
-      >
-      <a href="#/爬虫/01_京东抢购脚本" class="bubble-link"
-        >爬虫 (<small>7</small>)</a
-      >
-      <a href="#/设计模式/index" class="bubble-link"
-        >设计模式 (<small>24</small>)</a
-      >
-      <a href="#/工具/01_自定义路径复制脚本" class="bubble-link"
-        >工具 (<small>1</small>)</a
-      >
-      <a href="#/UI设计/01_概念版" class="bubble-link"
-        >UI设计 (<small>1</small>)</a
-      >
-      <a href="#/一些想法/01_css练习游戏" class="bubble-link"
-        >一些想法 (<small>1</small>)</a
-      >
-      <a href="#/其他/01_计算机网络知识汇总" class="bubble-link"
-        >其他 (<small>9</small>)</a
-      >
+    <div class="achievement-system">
+      <!-- 技能树主干 -->
+      <div class="skill-tree">
+        <div class="tree-trunk"></div>
+        <div class="skill-node unlocked" data-skill="one">
+          <div class="progress-bar" style="--progress: 100%"></div>
+          <div class="tooltip">10K+ 代码行</div>
+        </div>
+        <div class="skill-node locked" data-skill="two">
+          <div class="progress-bar" style="--progress: 55%"></div>
+          <div class="tooltip">3D游戏项目</div>
+        </div>
+        <div class="skill-node locked" data-skill="three">
+          <div class="progress-bar" style="--progress: 40%"></div>
+          <div class="tooltip">全栈项目</div>
+        </div>
+        <div class="skill-node locked" data-skill="four">
+          <div class="progress-bar" style="--progress: 20%"></div>
+          <div class="tooltip">数据可视化专家</div>
+        </div>
+      </div>
+      <!-- 成就展示区 -->
+      <div class="achievement-wall">
+        <div class="badge earned" data-badge="python-master">
+          <div class="badge-content">
+            <div class="badge-icon">🔓</div>
+            <span> 代码行数 10K+</span>
+          </div>
+          <div class="tooltip">
+            <div>🎉</div>
+            <span> 2024年12月达成！ </span>
+          </div>
+        </div>
+        <div class="badge locked" data-badge="threejs">
+          <div class="badge-content">
+            <div class="badge-icon">🔒</div>
+            <span> 3D游戏项目</span>
+          </div>
+          <div class="tooltip">
+            <div>✨</div>
+            <span> 进度：55% </span>
+          </div>
+        </div>
+        <div class="badge locked" data-badge="threejs">
+          <div class="badge-content">
+            <div class="badge-icon">🔒</div>
+            <span> 全栈项目</span>
+          </div>
+          <div class="tooltip">
+            <div>✨</div>
+            <span> 进度：40% </span>
+          </div>
+        </div>
+        <div class="badge locked" data-badge="python-master">
+          <div class="badge-content">
+            <div class="badge-icon">🔒</div>
+            <span>数据可视化专家</span>
+          </div>
+          <div class="tooltip">
+            <div>✨</div>
+            <span> 进度：20% </span>
+          </div>
+        </div>
+      </div>
     </div>
-    
+
+    <h3 id="其他个人站点">其他个人站点</h3>
+
+    <div class="project-item">
+      <h3>
+        📚 技术博客 |
+        <a style="text-decoration: none" href="https://pengpen1.github.io/"
+          >blog-coderpeng</a
+        >
+      </h3>
+      <ul>
+        <li>📖 内容规模：累计创作59篇技术文章（2024年新增28篇）</li>
+        <li>🎯 核心方向：前端工程化、可视化开发、爬虫实践</li>
+        <li>🚀 访问数据：日均UV 10+，最高单篇阅读量1.2K+</li>
+        <li>💡 特色功能：支持全文搜索、工具箱、3D世界、动画合集</li>
+      </ul>
+      <div class="tech-stack">
+        <span class="tech-tag">Hexo</span>
+        <span class="tech-tag">Markdown扩展</span>
+        <span class="tech-tag">CI/CD</span>
+      </div>
+
+      <div class="personal-site">
+        <img
+          alt="技术博客截图：展示暗黑模式和代码高亮功能"
+          class="site-png"
+          src="./_media/image/blog-coderpeng.png"
+        />
+        <div class="site-overlay">
+          <div class="site-stats">
+            <div class="stat-item">
+              <div class="stat-value">80%</div>
+              <div>访问成功率</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">1.8s</div>
+              <div>平均加载速度</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <h3>
+        🎨 3D作品集 |
+        <a
+          style="text-decoration: none"
+          href="https://pengpen1.github.io/three-demo-site/#/"
+          >three-coderpeng</a
+        >
+      </h3>
+      <ul>
+        <li>🖼️ 展示规模：包含6个交互式3D场景（持续更新）</li>
+        <li>⚡ 性能指标：WebGL渲染帧率稳定50+FPS</li>
+        <li>🎮 交互特性：支持双击进入全屏</li>
+        <li>📦 模型管理：GLTF标准模型库（总量1GB）</li>
+      </ul>
+      <div class="tech-stack">
+        <span class="tech-tag">Three.js r158</span>
+        <span class="tech-tag">GSAP动画</span>
+        <span class="tech-tag">Draco压缩</span>
+      </div>
+
+      <div class="personal-site">
+        <img
+          alt="3D作品集截图：展示粒子系统与物理模拟效果"
+          class="site-png"
+          src="./_media/image/three-coderpeng.png"
+        />
+        <div class="site-overlay">
+          <div class="site-stats">
+            <div class="stat-item">
+              <div class="stat-value">2.7k</div>
+              <div>模型三角面数</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">256MB</div>
+              <div>GPU内存占用</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>公司级项目</h3>
+
+    <div class="project-item">
+      <h3>重庆移动 | 营业厅监测大屏</h3>
+      <ul>
+        <li>
+          📈 性能优化：通过WebGL实例化渲染，实现10万+数据点实时呈现，FPS稳定50+
+        </li>
+        <li>
+          📊 架构设计：支持三级下钻分析，动态加载地理数据（GeoJSON 2.3MB）
+        </li>
+        <li>🔗 实时通信：WebSocket长连接保障数据更新延迟＜200ms</li>
+        <li>🎯 数据合并：支持合并城区，自定义下钻区域</li>
+      </ul>
+      <div class="tech-stack">
+        <span class="tech-tag">Three.js</span>
+        <span class="tech-tag">ECharts</span>
+        <span class="tech-tag">WebSocket</span>
+        <span class="tech-tag">WebGL优化</span>
+      </div>
+      <p align="center">
+        <img
+          alt="blog"
+          class="site-png"
+          loading="lazy"
+          src="https://cdn.jsdelivr.net/gh/pengpen1/blog-images/重庆.png"
+          style="width: 100%; height: auto; object-fit: contain"
+        />
+        <img
+          alt="blog"
+          class="site-png"
+          loading="lazy"
+          src="https://cdn.jsdelivr.net/gh/pengpen1/blog-images/大头.png"
+          style="width: 100%; height: auto; object-fit: contain"
+        />
+      </p>
+    </div>
+
+    <div class="project-item">
+      <h3>陕西移动 | 数据管理系统</h3>
+      <ul>
+        <li>📑 复杂交互：实现多级弹窗嵌套（最多4层），表单字段校验规则120+</li>
+        <li>⚡ 性能优化：首屏加载时间从4.2s降至1.8s（Webpack分包 + 懒加载）</li>
+        <li>📦 状态管理：Vuex模块化管理200+个状态节点，数据响应延迟＜50ms</li>
+        <li>🔐 权限系统：RBAC模型支持6种角色、32种操作权限配置</li>
+      </ul>
+      <div class="tech-stack">
+        <span class="tech-tag">Vue 2.x</span>
+        <span class="tech-tag">Element UI</span>
+        <span class="tech-tag">Webpack</span>
+        <span class="tech-tag">RBAC</span>
+        <span class="tech-tag">性能优化</span>
+      </div>
+      <p align="center">
+        <img
+          alt="blog"
+          class="site-png"
+          loading="lazy"
+          src="https://cdn.jsdelivr.net/gh/pengpen1/blog-images/20231102160400.png"
+          style="width: 100%; height: auto; object-fit: contain"
+        />
+        <img
+          alt="blog"
+          class="site-png"
+          loading="lazy"
+          src="https://cdn.jsdelivr.net/gh/pengpen1/blog-images/20231102161139.png"
+          style="width: 100%; height: auto; object-fit: contain"
+        />
+      </p>
+    </div>
+
+    <h3>技术栈</h3>
+
+    <div class="tech-stacks">
+      <!-- 技能项 -->
+      <div class="skill" data-percent="90" style="--percent: 90%">
+        <div class="skill-icon">🐍</div>
+        <div class="skill-info">
+          <span>Vue</span>
+          <div class="skill-bar"></div>
+        </div>
+      </div>
+
+      <div class="skill" data-percent="85" style="--percent: 85%">
+        <div class="skill-icon">🧠</div>
+        <div class="skill-info">
+          <span>Three.js</span>
+          <div class="skill-bar"></div>
+        </div>
+      </div>
+
+      <div class="skill" data-percent="80" style="--percent: 80%">
+        <div class="skill-icon">📊</div>
+        <div class="skill-info">
+          <span>ECharts</span>
+          <div class="skill-bar"></div>
+        </div>
+      </div>
+
+      <div class="skill" data-percent="55" style="--percent: 55%">
+        <div class="skill-icon">💻</div>
+        <div class="skill-info">
+          <span>Vite</span>
+          <div class="skill-bar"></div>
+        </div>
+      </div>
+    </div>
+
+    <h3>关于我</h3>
+
+    <div
+      style="
+        /* border-left: 3px solid #42b983; */
+        padding-left: 0.5rem;
+        margin-top: 2rem;
+      "
+    >
+      <ul>
+        <li>3年系统建设经验，专注于数据可视化和AI工程化。</li>
+        <li>主导过 1 个大型项⽬的落地实施，参与过 8+项目的核心开发。</li>
+        <li>
+          成功推动公司前端 AI ⼯程化能⼒的运用，RAG
+          知识库系统的建设，可视化技术的升级(ECharts &gt; Three.js)。
+        </li>
+      </ul>
+
+      <p align="center">
+        <img
+          src="https://img.shields.io/badge/version-v1.3.0-blue"
+          loading="lazy"
+        />
+        <img
+          src="https://img.shields.io/badge/QQ-1592193136-blue"
+          loading="lazy"
+        />
+      </p>
+    </div>
+
     <h2 align="center">
       coding...
       <img
@@ -1042,5 +1171,6 @@
         width="30"
       />
     </h2>
+
   </body>
 </html>
