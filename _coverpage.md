@@ -4,7 +4,7 @@
 
 - [.探索](/AI/index)
 - [.记录](/log)
-- [.分享](/AI/01_基础与历史)
+- [.分享](/AI/index)
 
 [GitHub](https://github.com/pengpen1)
 [启程](#site-title)
