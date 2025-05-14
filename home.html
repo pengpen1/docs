@@ -5,34 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>coderpeng 的笔记</title>
     <style>
-      /* 动画及样式 */
+      /* 基础动画样式 */
       @keyframes bounce {
         0%,
         100% {
           transform: translateY(0);
         }
-
         50% {
           transform: translateY(-10px);
-        }
-      }
-
-      @keyframes bounce-color {
-        0%,
-        100% {
-          transform: translateY(0) scale(1);
-        }
-
-        30% {
-          transform: translateY(-30px) scale(1.2);
-        }
-
-        50% {
-          background: #4ecdc4;
-        }
-
-        70% {
-          transform: translateY(0) scale(0.9);
         }
       }
 
@@ -41,571 +21,79 @@
         100% {
           transform: scale(1);
         }
-
         30% {
           transform: rotateZ(30deg) scale(1.2);
         }
-
         50% {
           transform: rotateZ(-30deg) scale(1.2);
         }
-
         70% {
           transform: scale(0.9);
         }
       }
 
-      @keyframes node-float {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-
-        50% {
-          transform: translateY(-10px);
-        }
-      }
-
-      .split-box {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        margin-bottom: 50px;
-        margin-top: 100px;
-      }
-
-      .bounce-ball {
-        width: 30px;
-        height: 30px;
-        background: #ff6b6b;
-        border-radius: 50%;
-        animation: bounce-color 1.2s ease-in-out infinite;
-        animation-delay: calc(0.2s * var(--i));
-      }
-
-      .timeline-container {
-        position: relative;
-        margin: 40px 0;
-      }
-
-      .timeline-path {
+      /* 视频容器样式 */
+      .video-container {
         width: 100%;
-        height: 3px;
-        background: linear-gradient(90deg, #4facfe, #00f2fe);
-        margin: 0 auto;
-        position: relative;
-      }
-
-      .timeline-node {
-        position: absolute;
-        left: calc(var(--pos) * 100%);
-        top: -10px;
-        animation: node-float 2s infinite;
-      }
-
-      .node-badge {
-        background: #fff;
-        padding: 8px 15px;
-        border-radius: 20px;
-        box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
-        cursor: pointer;
-        transition: transform 0.3s;
-      }
-
-      .node-popup {
-        position: absolute;
-        top: 40px;
-        white-space: nowrap;
-        opacity: 0;
-        transition: opacity 0.3s;
-      }
-
-      .timeline-node:hover .node-popup {
-        opacity: 1;
-      }
-
-      /* 媒体查询：兼容移动端 */
-      @media (max-width: 768px) {
-        #line-gif {
-          width: 100% !important;
-          height: 80px !important;
-        }
-
-        .site-png {
-          height: auto !important;
-          object-fit: contain !important;
-        }
-
-        .bounce-ball {
-          width: 18px;
-          height: 18px;
-        }
-
-        .timeline-path {
-          width: 90% !important;
-        }
-
-        .timeline-node {
-          position: absolute;
-          left: calc(var(--pos) * 80%);
-          top: -10px;
-          animation: node-float 2s infinite;
-        }
-
-        .timeline-node:last-child {
-          left: calc(0.85 * 80%);
-        }
-
-        .timeline-node:nth-last-child(2) {
-          left: calc(0.45 * 80%);
-        }
-      }
-    </style>
-
-    <style>
-      /* 照片卡片相关 */
-      .parallax-grid {
-        position: relative;
-        height: 40vh;
-        transform-style: preserve-3d;
-        margin-bottom: 80px;
-      }
-
-      .card-text {
-        width: 50%;
-        text-align: center;
-        padding-left: 12px;
-      }
-
-      .card-layer {
-        position: absolute;
-        padding: 20px;
-        width: 100%;
-        transition: 0.3s all ease-out;
-        transform: translateZ(calc(var(--depth) * -50px));
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .card-layer:hover {
-        transform: translateZ(calc(var(--depth) * 30px))
-          rotateZ(calc(var(--depth) * 2deg));
-        z-index: 5;
-      }
-
-      .card-layer:nth-child(odd):hover {
-        transform: translateZ(calc(var(--depth) * 30px))
-          rotateZ(calc(var(--depth) * -2deg));
-      }
-
-      /* 悬停时其他卡片退场 */
-      .parallax-grid:hover .card-layer:not(:hover) {
-        filter: brightness(0.8);
-        transform: translateZ(calc(var(--depth) * -100px));
-      }
-
-      /* 新增移动端适配 */
-      @media (max-width: 768px) {
-        .parallax-grid {
-          min-height: 400px;
-        }
-
-        /* 改为垂直排列 */
-        .card-layer {
-          flex-direction: column;
-        }
-
-        .card-layer img {
-          width: 100% !important;
-          max-width: 100% !important;
-        }
-
-        .card-text {
-          width: 100%;
-          height: 74px;
-          text-align: center;
-          padding-top: 22px;
-        }
-      }
-    </style>
-
-    <style>
-      /* 成就树相关 */
-      .achievement-system {
-        display: grid;
-        grid-template-columns: 1fr 300px;
-        gap: 40px;
-        padding: 30px;
-        background: rgba(255, 255, 255, 0.9);
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      }
-
-      .skill-tree {
-        position: relative;
-        min-height: 400px;
-      }
-
-      .tree-trunk {
-        width: 8px;
-        height: 100%;
-        background: linear-gradient(to bottom, #4facfe, #00f2fe);
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-
-      .skill-node {
-        position: absolute;
-        width: 80px;
-        height: 80px;
-        padding: 12px;
-        background: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3);
-        cursor: pointer;
-        transition: transform 0.3s;
-      }
-
-      /* .skill-node.unlocked {
-    border: 3px solid #42b983;
-  } */
-
-      .skill-node.locked {
-        filter: grayscale(0.8);
-        opacity: 0.6;
-      }
-
-      .progress-bar {
-        width: 100%;
-        height: 4px;
-        background: #eee;
-        position: absolute;
-        bottom: -20px;
-        border-radius: 2px;
-      }
-
-      .progress-bar::after {
-        content: "";
-        display: block;
-        width: var(--progress);
-        height: 100%;
-        background: #4facfe;
-        border-radius: 2px;
-        transition: width 0.5s ease;
-      }
-
-      .tooltip {
-        /* 悬浮提示样式 */
-      }
-
-      .achievement-wall {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        align-content: start;
-      }
-
-      .badge {
-        padding: 15px;
-        border-radius: 10px;
-        text-align: center;
-        background: white;
-        position: relative;
-        cursor: pointer;
-      }
-
-      .badge .tooltip {
-        display: none;
-        height: 62px;
-      }
-
-      .badge .badge-content {
-        display: block;
-        height: 62px;
-      }
-
-      .badge:hover .tooltip {
-        display: block;
-      }
-
-      .badge:hover .badge-content {
-        display: none;
-      }
-
-      .earned:hover {
-        border: 2px solid #80c055 !important;
-        animation: glow2 2s infinite alternate !important;
-      }
-
-      .badge.earned {
-        border: 2px solid #ffd700;
-        animation: glow 2s infinite alternate;
-      }
-
-      .badge.locked {
-        background: #f5f5f5;
-      }
-
-      @keyframes glow {
-        from {
-          box-shadow: 0 0 5px #ffd700;
-        }
-
-        to {
-          box-shadow: 0 0 20px #ffd700;
-        }
-      }
-
-      @keyframes glow2 {
-        from {
-          box-shadow: 0 0 5px #80c055;
-        }
-
-        to {
-          box-shadow: 0 0 20px #80c055;
-        }
-      }
-
-      /* 动态布局技能节点位置 */
-      .skill-node[data-skill="one"] {
-        left: calc(40% - 80px);
-        top: 10%;
-      }
-
-      .skill-node[data-skill="two"] {
-        left: 60%;
-        top: 20%;
-      }
-
-      .skill-node[data-skill="three"] {
-        left: calc(40% - 80px);
-        top: 40%;
-      }
-
-      .skill-node[data-skill="four"] {
-        left: 60%;
-        top: 50%;
-      }
-
-      @media (max-width: 768px) {
-        .achievement-system {
-          grid-template-columns: 1fr;
-          gap: 20px;
-        }
-
-        .skill-node {
-          width: 80px;
-          height: 80px;
-          padding: 10px;
-        }
-
-        .skill-node[data-skill="one"] {
-          left: 8%;
-          top: 10%;
-        }
-
-        .skill-node[data-skill="two"] {
-          left: 60%;
-          top: 20%;
-        }
-
-        .skill-node[data-skill="three"] {
-          left: 8%;
-          top: 40%;
-        }
-
-        .skill-node[data-skill="four"] {
-          left: 60%;
-          top: 50%;
-        }
-      }
-    </style>
-
-    <style>
-      /* 项目展示样式 */
-      .project-item {
-        background: rgba(255, 255, 255, 0.95);
+        max-width: 800px;
+        margin: 20px auto;
         border-radius: 12px;
-        padding: 20px;
-        margin: 20px 0;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: 1px solid #eee;
-      }
-
-      .project-item:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-      }
-
-      .project-item h3 {
-        color: #2c3e50;
-        margin: 0 0 15px 0;
-        /* padding-bottom: 10px; */
-        border-bottom: 2px solid #4ecdc4;
-        font-size: 1.4em;
-      }
-
-      .project-item ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-
-      .project-item li {
-        padding: 8px 0;
-        display: flex;
-        align-items: center;
-        font-size: 0.95em;
-      }
-
-      .project-item li::before {
-        content: "▹";
-        color: #4ecdc4;
-        margin-right: 10px;
-        font-size: 1.2em;
-      }
-
-      .tech-stack {
-        display: flex;
-        gap: 8px;
-        margin-top: 15px;
-        flex-wrap: wrap;
-      }
-
-      .tech-tag {
-        background: #f0f4f8;
-        padding: 4px 12px;
-        border-radius: 20px;
-        font-size: 0.85em;
-        color: #2c3e50;
-        border: 1px solid #dfe6e9;
-      }
-
-      /* 移动端适配 */
-      @media (max-width: 768px) {
-        .project-item {
-          padding: 15px;
-          margin: 15px 0;
-        }
-
-        .project-item h3 {
-          font-size: 1.2em;
-        }
-
-        .project-item li {
-          font-size: 0.9em;
-        }
-      }
-    </style>
-
-    <style>
-      /* 新增个人站点专属样式 */
-      .personal-site {
-        position: relative;
         overflow: hidden;
-        border-radius: 12px;
-        transition: transform 0.3s ease;
-        margin-top: 16px;
+        position: relative;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        background: linear-gradient(45deg, #2c3e50, #4c5d70);
+        padding: 5px;
       }
 
-      .personal-site:hover .site-overlay {
-        opacity: 1;
-      }
-
-      .site-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.6);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 20px;
-        color: white;
-      }
-
-      .site-stats {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        margin-top: 20px;
-      }
-
-      .stat-item {
-        background: rgba(255, 255, 255, 0.15);
-        padding: 12px;
+      .coderpeng-video {
+        display: block;
+        width: 100%;
         border-radius: 8px;
-        text-align: center;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        transition: transform 0.3s ease;
       }
 
-      .stat-value {
-        font-size: 1.4em;
-        font-weight: bold;
-        color: #4ecdc4;
+      .video-container:hover .coderpeng-video {
+        transform: scale(1.02);
       }
 
-      @media (max-width: 768px) {
-        .site-stats {
-          grid-template-columns: 1fr;
-        }
-
-        .stat-item {
-          padding: 10px;
-        }
-      }
-    </style>
-
-    <style>
-      /* 气泡导航样式 - 更新版 */
+      /* 气泡导航样式 */
       .bubble-navigation {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 20px; /* 气泡间距 */
+        gap: 20px;
         padding: 40px 20px;
-        /* margin-bottom: 40px; */
         position: relative;
         overflow: hidden;
       }
 
       .bubble-link {
         padding: 10px 20px;
-        border-radius: 50px; /* 圆润的气泡形状 */
-        color: white; /* 默认文字颜色 */
+        border-radius: 50px;
+        color: white;
         text-decoration: none;
-        /* font-weight: bold; */
         font-size: 0.9em;
         transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
           box-shadow 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
-          background 0.4s ease; /* 平滑过渡 */
+          background 0.4s ease;
         animation: floatBubble 6s ease-in-out infinite;
         position: relative;
-        border: 2px solid transparent; /* 添加边框以便悬停时改变 */
+        border: 2px solid transparent;
       }
 
       .bubble-link:hover {
-        transform: scale(1.12) translateY(-6px); /* 悬停时放大并上移更多 */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25); /* 悬停时阴影更深 */
-        border-color: rgba(255, 255, 255, 0.7); /* 悬停时显示白色半透明边框 */
+        transform: scale(1.12) translateY(-6px);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+        border-color: rgba(255, 255, 255, 0.7);
       }
 
       /* --- 个性化气泡颜色 --- */
       /* 1. 前端 (蓝绿渐变) */
       .bubble-link:nth-child(1) {
-        background: linear-gradient(135deg, #00f2fe, #00f2fe); /* 天蓝到青色 */
-        color: #1a2a4a; /* 深蓝文字 */
+        background: linear-gradient(135deg, #00f2fe, #00f2fe);
+        color: #1a2a4a;
         animation-delay: 0s;
       }
       .bubble-link:nth-child(1):hover {
@@ -614,7 +102,7 @@
 
       /* 2. AI+ (紫粉渐变) */
       .bubble-link:nth-child(2) {
-        background: linear-gradient(135deg, #f5576c, #f5576c); /* 紫色到粉红 */
+        background: linear-gradient(135deg, #f5576c, #f5576c);
         color: #ffffff;
         animation-delay: -0.5s;
       }
@@ -624,8 +112,8 @@
 
       /* 3. 后端 (橙黄渐变) */
       .bubble-link:nth-child(3) {
-        background: linear-gradient(135deg, #fda085, #fda085); /* 亮黄到橙色 */
-        color: #5c3d03; /* 深棕色文字 */
+        background: linear-gradient(135deg, #fda085, #fda085);
+        color: #5c3d03;
         animation-delay: -1s;
       }
       .bubble-link:nth-child(3):hover {
@@ -634,8 +122,8 @@
 
       /* 4. 算法 (青蓝渐变) */
       .bubble-link:nth-child(4) {
-        background: linear-gradient(135deg, #8fd3f4, #8fd3f4); /* 青色到淡蓝 */
-        color: #0b4f6c; /* 深青色文字 */
+        background: linear-gradient(135deg, #8fd3f4, #8fd3f4);
+        color: #0b4f6c;
         animation-delay: -1.5s;
       }
       .bubble-link:nth-child(4):hover {
@@ -644,7 +132,7 @@
 
       /* 5. 爬虫 (灰黑渐变) */
       .bubble-link:nth-child(5) {
-        background: linear-gradient(135deg, #696969, #696969); /* 深灰到浅灰 */
+        background: linear-gradient(135deg, #696969, #696969);
         color: #ffffff;
         animation-delay: -2s;
       }
@@ -654,7 +142,7 @@
 
       /* 6. 设计模式 (蓝紫渐变) */
       .bubble-link:nth-child(6) {
-        background: linear-gradient(135deg, #764ba2, #764ba2); /* 原始蓝紫 */
+        background: linear-gradient(135deg, #764ba2, #764ba2);
         color: #ffffff;
         animation-delay: -2.5s;
       }
@@ -664,8 +152,8 @@
 
       /* 7. 工具 (绿黄渐变) */
       .bubble-link:nth-child(7) {
-        background: linear-gradient(135deg, #deecdd, #deecdd); /* 淡绿到米白 */
-        color: #3a5a40; /* 深绿色文字 */
+        background: linear-gradient(135deg, #deecdd, #deecdd);
+        color: #3a5a40;
         animation-delay: -3s;
       }
       .bubble-link:nth-child(7):hover {
@@ -674,8 +162,8 @@
 
       /* 8. UI设计 (粉橙渐变) */
       .bubble-link:nth-child(8) {
-        background: linear-gradient(135deg, #ffcc99, #ffcc99); /* 粉红到淡橙 */
-        color: #8b4513; /* 棕色文字 */
+        background: linear-gradient(135deg, #ffcc99, #ffcc99);
+        color: #8b4513;
         animation-delay: -3.5s;
       }
       .bubble-link:nth-child(8):hover {
@@ -684,8 +172,8 @@
 
       /* 9. 一些想法 (淡紫蓝渐变) */
       .bubble-link:nth-child(9) {
-        background: linear-gradient(135deg, #aed6f1, #aed6f1); /* 淡紫到淡蓝 */
-        color: #4a235a; /* 深紫色文字 */
+        background: linear-gradient(135deg, #aed6f1, #aed6f1);
+        color: #4a235a;
         animation-delay: -4s;
       }
       .bubble-link:nth-child(9):hover {
@@ -694,11 +182,7 @@
 
       /* 10. 其他 (灰蓝渐变) */
       .bubble-link:nth-child(10) {
-        background: linear-gradient(
-          135deg,
-          #2c3e50,
-          #2c3e50
-        ); /* 银灰到深蓝灰 */
+        background: linear-gradient(135deg, #2c3e50, #2c3e50);
         color: #ffffff;
         animation-delay: -4.5s;
       }
@@ -722,125 +206,38 @@
         }
       }
 
-      @media (max-width: 768px) {
-        .bubble-link {
-          padding: 12px 20px;
-          font-size: 0.9em;
-        }
-        .bubble-navigation {
-          gap: 15px;
-          padding: 30px 15px;
-        }
-      }
-
-      @keyframes floatBubble {
-        0%,
-        100% {
-          transform: translateY(0) translateX(0) rotate(0deg) scale(1);
-        }
-        25% {
-          transform: translateY(-10px) translateX(5px) rotate(5deg) scale(1.02);
-        }
-        50% {
-          transform: translateY(0) translateX(-5px) rotate(0deg) scale(1);
-        }
-        75% {
-          transform: translateY(5px) translateX(0px) rotate(-5deg) scale(0.98);
-        }
-      }
-
-      @media (max-width: 768px) {
-        .bubble-link {
-          padding: 12px 20px;
-          font-size: 0.9em;
-        }
-        .bubble-navigation {
-          gap: 15px;
-          padding: 30px 15px;
-        }
-      }
-    </style>
-
-    <style>
-      /* 技术栈 */
-      @keyframes skillReveal {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .tech-stacks {
-        display: grid;
-        gap: 1.5rem;
-        padding: 1rem;
-        background: rgba(255, 255, 255, 0.1);
+      /* 项目展示样式 */
+      .project-item {
+        background: rgba(255, 255, 255, 0.95);
         border-radius: 12px;
+        padding: 20px;
+        margin: 20px 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid #eee;
       }
 
-      .skill {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        opacity: 0;
-        animation: skillReveal 0.6s ease forwards;
+      .project-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
       }
 
-      /* 交错动画延迟 */
-      .skill:nth-child(1) {
-        animation-delay: 0.2s;
-      }
+      /* 响应式设计 */
+      @media (max-width: 768px) {
+        .video-container {
+          max-width: 100%;
+          border-radius: 8px;
+          margin: 15px auto;
+        }
 
-      .skill:nth-child(2) {
-        animation-delay: 0.4s;
-      }
+        .bubble-link {
+          padding: 12px 20px;
+          font-size: 0.9em;
+        }
 
-      .skill:nth-child(3) {
-        animation-delay: 0.6s;
-      }
-
-      .skill-icon {
-        font-size: 2em;
-        transition: transform 0.3s;
-      }
-
-      .skill:hover .skill-icon {
-        transform: rotate(15deg) scale(1.2);
-      }
-
-      .skill-info {
-        flex-grow: 1;
-      }
-
-      .skill-bar {
-        height: 8px;
-        background: rgba(66, 185, 131, 0.2);
-        border-radius: 4px;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .skill-bar::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: var(--percent);
-        background: linear-gradient(90deg, #42b983, #4facfe);
-        border-radius: 4px;
-        transition: width 0.8s ease;
-      }
-
-      /* 响应式布局 */
-      @media (min-width: 768px) {
-        .tech-stacks {
-          grid-template-columns: repeat(2, 1fr);
+        .bubble-navigation {
+          gap: 15px;
+          padding: 30px 15px;
         }
       }
     </style>
@@ -851,8 +248,23 @@
 
     <p align="center">
       <span style="margin-bottom: 1rem; display: inline-block">
-        我是coderpeng，一位喜欢探索的开发者，目前专注于AI+可视化开发。 </span
-      ><br />
+        我是coderpeng，一位喜欢探索的开发者，目前专注于AI+可视化开发。
+      </span>
+    </p>
+
+    <!-- 添加视频容器 -->
+    <div class="video-container">
+      <video
+        src="./_media/video/coderpeng.mp4"
+        autoplay
+        loop
+        muted
+        class="coderpeng-video"
+        playsinline
+      ></video>
+    </div>
+
+    <p align="center">
       <span
         style="
           animation: shake 1.2s ease-in-out infinite;
@@ -860,36 +272,10 @@
         "
         >💐</span
       >
-      <span> 欢迎来到我的二进制世界！ </span><br />
+      <span> 欢迎来到我的二进制世界！ </span>
+      <br />
       <span> 愿君生活愉快，四季如春！ </span>
     </p>
-
-    <div class="parallax-grid">
-      <div class="card-layer" style="--depth: 1">
-        <img
-          src="./_media/image/start.jpg"
-          alt="背景层"
-          style="max-width: 800px; width: 65%; height: 40vh; object-fit: cover"
-        />
-        <div class="card-text">喜欢摄影、骑车、跑步，保存记忆，直到永远</div>
-      </div>
-      <div class="card-layer" style="--depth: 2">
-        <img
-          src="./_media/image/bike.jpg"
-          alt="中间层"
-          style="max-width: 800px; width: 65%; height: 40vh; object-fit: cover"
-        />
-        <div class="card-text"></div>
-      </div>
-      <div class="card-layer" style="--depth: 3">
-        <img
-          src="./_media/image/run.jpg"
-          alt="前景层"
-          style="max-width: 800px; width: 65%; height: 40vh; object-fit: cover"
-        />
-        <div class="card-text"></div>
-      </div>
-    </div>
 
     <h3>目录结构</h3>
 
@@ -936,7 +322,7 @@
     </p>
 
     <details>
-      <summary style="cursor: pointer;">点击展开目录结构</summary>
+      <summary style="cursor: pointer">点击展开目录结构</summary>
 
       <pre><code>
         ├─ .nojekyll             | 阻止 GitHub Pages 忽略掉下划线开头的文件
@@ -1032,7 +418,7 @@
         >其他 (<small>9</small>)</a
       >
     </div>
-    
+
     <h2 align="center">
       coding...
       <img

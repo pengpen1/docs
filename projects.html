@@ -845,11 +845,37 @@
         }
       }
     </style>
-
   </head>
 
   <body>
-    <h1 align="center" id="关于我">关于我</h1>
+    <h1 align="center" id="关于我" style="margin-bottom: 30px">关于我</h1>
+
+    <div class="parallax-grid">
+      <div class="card-layer" style="--depth: 1">
+        <img
+          src="./_media/image/start.jpg"
+          alt="背景层"
+          style="max-width: 800px; width: 65%; height: 40vh; object-fit: cover"
+        />
+        <div class="card-text">喜欢摄影、骑车、跑步，保存记忆，直到永远</div>
+      </div>
+      <div class="card-layer" style="--depth: 2">
+        <img
+          src="./_media/image/bike.jpg"
+          alt="中间层"
+          style="max-width: 800px; width: 65%; height: 40vh; object-fit: cover"
+        />
+        <div class="card-text"></div>
+      </div>
+      <div class="card-layer" style="--depth: 3">
+        <img
+          src="./_media/image/run.jpg"
+          alt="前景层"
+          style="max-width: 800px; width: 65%; height: 40vh; object-fit: cover"
+        />
+        <div class="card-text"></div>
+      </div>
+    </div>
 
     <h3>成就树</h3>
 
@@ -1171,6 +1197,5 @@
         width="30"
       />
     </h2>
-
   </body>
 </html>
