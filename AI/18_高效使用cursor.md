@@ -49,7 +49,7 @@ Cursor 会计算代码库中每个文件的嵌入，并利用这些嵌入来提�
 
 先把那个联网搜索的`mcp服务器`关掉，现在大模型的训练数据已经很全面优秀了，联网搜索大部分情况只会污染（编写代码方面，其他情况不评论），推荐安装以下 MCP
 
-### [context7](https://github.com/upstash/context7)
+#### [context7](https://github.com/upstash/context7)
 
 上干货，让 LLM 使用最新文档来编写代码，也就是`读完文档再说`
 
@@ -76,7 +76,7 @@ Cursor 会计算代码库中每个文件的嵌入，并利用这些嵌入来提�
 
 这可是真干货，建议记笔记。
 
-### 重要项目开发
+#### 重要项目开发
 
 对于开发新项目（比较重要），我们可以分为七个步骤
 
@@ -87,7 +87,7 @@ Cursor 会计算代码库中每个文件的嵌入，并利用这些嵌入来提�
 5. 测试(重要)：全面测试
 6. 寻求建议，重复：询问接下来实现什么的建议，并重复
 
-### 日常工作
+#### 日常工作
 
 日常工作直接让 AI 仿照其他页面就好，另外好的 prompt 一定是目标明确的，如下：
 
@@ -120,15 +120,29 @@ DataAnnotationView.vue，组件在DataAnnotationView文件夹下
 
 ![](https://cdn.jsdelivr.net/gh/pengpen1/blog-images/20250515160910279.png)
 
-### 全局
+#### 全局
 
 打开设置，找到 Rules，在这里设置规则，分享一个毕竟通用的规则，主要是做工作流规划的，可以理解为 think 模式扩展包。[点击前往](/AI/AGENT_EXECUTION_PROTOCOL_CN.md)
 
 ![](https://cdn.jsdelivr.net/gh/pengpen1/blog-images/20250515162259231.png)
 
-### 项目级
+#### 项目级
 
-在项目的 cursor/rules 目录下可以创建不同规则的文件。
+在项目的 .cursor/rules 目录下可以创建不同规则的文件。
+每个规则文件均以 MDC ( .mdc ) 编写
+
+| Rule Type 规则类型 | Description 描述                                                                                                                                   |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Always             | Always included in the model context<br>始终包含在模型上下文中                                                                                     |
+| Auto Attached      | Included when files matching a glob pattern are referenced<br>当引用与 glob 模式匹配的文件时包含                                                   |
+| Agent Requested    | Rule is available to the AI, which decides whether to include it. Must provide a description<br>规则可供 AI 使用，由 AI 决定是否纳入。必须提供描述 |
+| Manual             | Only included when explicitly mentioned using @ruleName<br>仅在使用 @ruleName 明确提及时才包含                                                     |
+
+例子：这是我博客项目的规则配置，用的`Auto Attached`类型，就是当我指定要阅读或者修改的文件类型是.html,.js(可配置)时，就会附加这些规则。
+
+![rule](https://cdn.jsdelivr.net/gh/pengpen1/blog-images/20250515174423688.png)
+
+再附上一个通用规则：
 
 ```txt
 # Cursor notta web 编码规范指南

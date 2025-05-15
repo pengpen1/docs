@@ -1,0 +1,58 @@
+---
+description: 
+globs: *.js,*.md,*.html
+alwaysApply: false
+---
+# type=auto-attached
+
+# Docsify博客项目指南
+
+这个规则提供了关于基于docsify@4构建的博客项目的相关信息和指导。
+
+## 项目结构
+
+- `index.html`: docsify的主配置文件和入口点
+- `home.html`: 博客首页内容
+- `_sidebar.md`: 侧边栏导航配置
+- `_navbar.md`: 顶部导航栏配置
+- `_coverpage.md`: 封面页配置
+- `_media/`: 媒体资源目录（图片、视频、CSS、JS）
+- `*.md`: 内容文件，以Markdown格式编写
+
+## 关键配置
+
+配置在`index.html`中通过`window.$docsify`对象设置:
+```javascript
+window.$docsify = {
+  name: "...",
+  nameLink: "/",
+  loadSidebar: true,
+  subMaxLevel: 2,
+  homepage: "home.html",
+  coverpage: true,
+  themeColor: "#42b983",
+  // 其他配置...
+}
+```
+
+## 路径处理
+
+- 本地开发环境：链接使用相对路径格式如`#/路径/文件`
+- 部署环境：需要确保链接能正确指向路径，如果部署在子目录则不要使用`/#/`开头
+
+## 导航与链接
+
+- 侧边栏：在`_sidebar.md`中定义，支持多级嵌套
+- 链接格式：使用`[显示文本](mdc:#/路径/文件)`格式进行内部链接
+- 文件结构：按主题/模块分类组织，每个主题可以有自己的`index.md`和子目录结构
+
+## 最佳实践
+
+1. 使用Markdown特性编写内容，如标题、列表、代码块、表格等
+2. 确保移动端适配良好
+3. 路线导航页面使用同一风格的时间线样式
+4. 为页面添加适当的交互效果，如阴影、渐变、悬停效果等
+5. 使用相对路径而非绝对路径引用资源
+6. 如果需要使用到js脚本请在`index.html`中用回调的形式使用脚本
+
+
