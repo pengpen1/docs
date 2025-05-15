@@ -14,7 +14,7 @@
   - [小程序](/前端/minProgram/01_Introduction.md)
   - [桌面端(electron)](/前端/electron/01_介绍.md)
   - [前端安全](/前端/safety/01_URL编码.md)
-  - [性能优化](/前端/capability/01_test.md)
+  - [性能优化](/前端/capability/01_视频加载优化专题.md)
 
 - AI+
 
