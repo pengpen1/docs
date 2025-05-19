@@ -25,4 +25,5 @@
   - [15_prompt 注入](/AI/15_prompt注入.md)
   - [16_LangChain 实现智能体 API](/AI/16_LangChain实现智能体API.md)
   - [17\_微调模型](/AI/17_微调模型.md)
-  - [18\_高效使用cursor](/AI/18_高效使用cursor.md)
+  - [18\_高效使用 cursor](/AI/18_高效使用cursor.md)
+  - [19_MCP 之 QQ 邮箱](/AI/19_MCP之QQ邮箱.md)

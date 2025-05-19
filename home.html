@@ -563,6 +563,12 @@
         border-left: 4px solid #42b983;
       }
 
+      .beian-text {
+        font-size: 1em;
+        color: #595959;
+        font-weight: 600;
+      }
+
       .beian {
         text-align: center;
         margin-top: 20px;
@@ -573,6 +579,7 @@
       .beian a {
         text-decoration: none;
         color: #595959;
+        font-weight: normal;
       }
 
       /* 响应式设计 */
@@ -845,7 +852,10 @@
 
     <!-- 备案号 -->
     <div class="beian">
-      <a href="https://beian.miit.gov.cn/" target="_blank">蜀ICP备2025141169号</a>
+      <span class="beian-text">备案号：</span>
+      <a href="https://beian.miit.gov.cn/" target="_blank"
+        >蜀ICP备2025141169号</a
+      >
     </div>
   </body>
 </html>
