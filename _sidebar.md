@@ -41,6 +41,7 @@
   - [17\_微调模型](/AI/17_微调模型.md)
   - [18\_高效使用 cursor](/AI/18_高效使用cursor.md)
   - [19_MCP 之 QQ 邮箱](/AI/19_MCP之QQ邮箱.md)
+  - [20_claude-code 初体验](/AI/20_claude-code初体验.md)
 
 - 后端
 
@@ -89,6 +90,7 @@
 - 一些想法
 
   - [01_css 练习游戏](/一些想法/01_css练习游戏.md)
+  - [02_桌面端client](/一些想法/02_桌面端client.md)
 
 - 其他
 

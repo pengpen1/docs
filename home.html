@@ -582,6 +582,30 @@
         font-weight: normal;
       }
 
+      .idea-time {
+        background-color: #e6f7ff;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.9em;
+        color: #0066cc;
+      }
+
+      .start-time {
+        background-color: #f6ffed;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.9em;
+        color: #52c41a;
+      }
+
+      .end-time {
+        background-color: #fff7e6;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.9em;
+        color: #fa8c16;
+      }
+
       /* 响应式设计 */
       @media (max-width: 768px) {
         .latest-recommended {
@@ -589,6 +613,88 @@
         }
         .dots-decoration {
           display: none;
+        }
+      }
+
+      /* 计划部分样式 */
+      .project-plan {
+        margin: 20px 0 40px;
+      }
+
+      .plan-item {
+        background: #f9f9f9;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-left: 4px solid #42b983;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      .plan-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .plan-item h4 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: #2c3e50;
+        font-size: 1.3em;
+      }
+
+      .plan-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 15px;
+        font-size: 0.9em;
+        color: #7f8c8d;
+      }
+
+      .idea-time,
+      .start-time,
+      .end-time {
+        background: rgba(66, 185, 131, 0.1);
+        padding: 4px 10px;
+        border-radius: 20px;
+      }
+
+      .plan-details {
+        margin: 15px 0;
+        padding-left: 20px;
+      }
+
+      .plan-details li {
+        margin-bottom: 8px;
+        line-height: 1.5;
+      }
+
+      .plan-item a {
+        color: #42b983;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .plan-item a:hover {
+        text-decoration: underline;
+      }
+
+      .project-plan hr {
+        border: 0;
+        height: 1px;
+        background: #eaeaea;
+        margin: 25px 0;
+      }
+
+      @media (max-width: 768px) {
+        .plan-meta {
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .plan-item {
+          padding: 15px;
         }
       }
     </style>
@@ -837,6 +943,86 @@
           <p>什么，这些都不够你看？来那看看主啵的其他项目吧</p>
           <span class="tag">项目</span>
         </div>
+      </div>
+    </div>
+
+    <h3 id="plan">计划</h3>
+    <p>愿我们都能实现心中所想！</p>
+
+    <div class="project-plan">
+      <div class="plan-item">
+        <h4>
+          <del>我想实现个练习 css 的网站</del> 我正在实现个练习 css
+          的网站《css-practice-game》
+        </h4>
+        <div class="plan-meta">
+          <span class="idea-time">Idea time: 2025/4/29</span>
+          <span class="start-time">Start time: 2025/4/29</span>
+          <span class="end-time">End time: --</span>
+        </div>
+        <ul class="plan-details">
+          <li>
+            类似于闯关游戏，从简单的开始，逐渐增加难度，用户可以选择关卡，将 css
+            的布局技巧都一一体现(浮动、定位、flex、grid 等等)
+          </li>
+          <li>每个关卡都可以基于不同的 CSS 技巧设计，难度逐渐增加。比如：</li>
+          <li>
+            右上角给出最终效果（在考虑是用图片还是直接渲染），中间是展示区，下面是代码区(实时渲染到展示区，支持代码高亮，支持代码提示，支持点击按钮格式化代码)
+          </li>
+          <li>
+            当用户书写完毕点击提交按钮，出现从上到下的检测光标，然后运行代码，检测是否通过（根据需要补充交互）
+          </li>
+        </ul>
+        <hr />
+        <p>正在实现中，点击 <a href="#/一些想法/01_css练习游戏">查看进度</a></p>
+      </div>
+
+      <div class="plan-item">
+        <h4>
+          <del>我想实现个自己的桌面端 client</del> 我正在实现自己的桌面端
+          client《agent-desk》
+        </h4>
+        <div class="plan-meta">
+          <span class="idea-time">Idea time: 2025/5/7</span>
+          <span class="start-time">Start time: 2025/5/20</span>
+          <span class="end-time">End time: --</span>
+        </div>
+        <ul class="plan-details">
+          <li>支持 MCP 协议</li>
+          <li>支持人机交互</li>
+          <li>支持 Function Call</li>
+        </ul>
+        <hr />
+        <p>正在实现中，点击 <a href="#/一些想法/02_桌面端client">查看进度</a></p>
+      </div>
+
+      <div class="plan-item">
+        <h4>我想实现个小程序《别动我计划》</h4>
+        <div class="plan-meta">
+          <span class="idea-time">Idea time: 2025/4/24</span>
+          <span class="start-time">Start time: --</span>
+          <span class="end-time">End time: --</span>
+        </div>
+        <ul class="plan-details">
+          <li>1.用户列出需要做的事、困扰的事、想要的事</li>
+          <li>2.系统根据用户的输入，生成一份计划</li>
+          <li>3.用户查看计划调整计划，确定后和日历同步</li>
+          <li>4.用户可以查看计划的进度</li>
+          <li>5.当计划完成后，自动归档(提升生命质量)</li>
+        </ul>
+      </div>
+
+      <div class="plan-item">
+        <h4>我想实现个微信群里机器人</h4>
+        <div class="plan-meta">
+          <span class="idea-time">Idea time: 2025/5/15</span>
+          <span class="start-time">Start time: --</span>
+          <span class="end-time">End time: --</span>
+        </div>
+        <ul class="plan-details">
+          <li>因为微信检测很严格，所以机器人只需负责收集信息并整理</li>
+          <li>统计发言人数，发言次数排行榜</li>
+        </ul>
       </div>
     </div>
 
