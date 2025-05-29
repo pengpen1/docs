@@ -54,5 +54,9 @@
 
 ```shell
 git clone https://github.com/jinhuaxiao/mcp-client.git agent-desk & cd agent-desk & cursor .
+
+git branch -M main
+git remote add origin git@github.com:pengpen1/agent-desk.git
+git push -u origin main
 ```
 

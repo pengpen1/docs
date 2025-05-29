@@ -117,6 +117,23 @@ https://api.github.com/repos/activepieces/activepieces
 ![](https://cdn.jsdelivr.net/gh/pengpen1/blog-images/githu-api.png)
 
 
+### 下载资源
+我们经常在GitHub上下载开源软件，有时候会发现下载速度相当忙，我们可以用下面的链接拼接下载地址来快速下载
+
+```txt
+https://github.abskoop.workers.dev/地址
+
+如：想下载https://github.com/2dust/v2rayN/releases/download/7.12.3/v2rayN-windows-64.zip
+
+只需：https://github.abskoop.workers.dev/2dust/v2rayN/releases/download/7.12.3/v2rayN-windows-64.zip
+```
+
+原理：利用 Cloudflare Workers (从 workers.dev 后缀可以看出来) 搭建的。Cloudflare Workers 允许开发者在 Cloudflare 的全球边缘网络上运行 JavaScript (或其他编译到 WebAssembly 的代码)。
+
+当你通过这个 URL 访问 GitHub 资源时，你的请求首先会发送到离你最近的 Cloudflare 边缘节点。然后，这个边缘节点上的 Worker 会代替你向 GitHub 的真实服务器发起请求。
+
+或者用别人搭建好的下载站点：比如[gh](https://gh.zhcn.it/)，要下载的链接直接复制进去就行。
+
 
 ### **快速跳转**
 

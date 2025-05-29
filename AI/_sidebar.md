@@ -28,3 +28,4 @@
   - [18\_高效使用 cursor](/AI/18_高效使用cursor.md)
   - [19_MCP 之 QQ 邮箱](/AI/19_MCP之QQ邮箱.md)
   - [20_claude-code 初体验](/AI/20_claude-code初体验.md)
+  - [21\_模型部署扫盲](/AI/21_模型部署扫盲.md)

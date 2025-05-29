@@ -41,7 +41,8 @@
 
 - 桌面端(electron)
 
-  - [01\_介绍](/前端/electron/01_介绍.md)
+  - [01_electron全面介绍](/前端/electron/01_electron全面介绍.md)
+  - [02_安装问题](/前端/electron/02_安装问题.md)
 
 - 前端安全
 
