@@ -126,7 +126,6 @@
       }
 
       @media (max-width: 768px) {
-
       }
     </style>
     <!-- Adds the default breadcrumb styling -->
@@ -183,8 +182,35 @@
         },
         mermaidConfig: {
           theme: "dark", // You can set mermaid theme options here
-        }
-        // Removed custom hook for Mermaid, as docsify-mermaid plugin should handle it.
+        },
+        executeScript: true, // 允许执行 Markdown 中的脚本
+        plugins: [
+          function (hook, vm) {
+            hook.doneEach(function () {
+              // 每次路由切换，内容渲染完成执行
+              // 针对 Markdown 中的特定标记来加载脚本
+              // 例如，在 Markdown 中写：<div data-load-script="path/to/my-script.js"></div>
+              const scriptLoaders =
+                document.querySelectorAll("[data-load-script]");
+              scriptLoaders.forEach((loader) => {
+                const scriptSrc = loader.dataset.loadScript;
+                const scriptId =
+                  "script-" + scriptSrc.replace(/[^a-zA-Z0-9]/g, ""); // 生成唯一ID
+                // if (scriptSrc && !document.getElementById(scriptId)) { // 如果用这个则只执行一次
+                if (scriptSrc) {
+                  var script = document.createElement("script");
+                  script.id = scriptId;
+                  script.src = scriptSrc;
+                  // 如果脚本需要初始化，确保它定义了一个全局函数
+                  // script.onload = () => { if(window.initMyScript) window.initMyScript(); };
+                  document.body.appendChild(script);
+                  // 可以选择移除这个标记，避免下次重复处理
+                  // loader.removeAttribute('data-load-script');
+                }
+              });
+            });
+          },
+        ],
       };
     </script>
     <!-- Docsify v4 -->

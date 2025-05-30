@@ -687,6 +687,52 @@
         margin: 25px 0;
       }
 
+      /* 计划详情展开/收起功能样式 */
+      .plan-details.collapsed {
+        max-height: 80px; /* 约显示2-3行 */
+        overflow: hidden;
+        position: relative;
+      }
+
+      .plan-details.collapsed::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 40px;
+        background: linear-gradient(
+          to bottom,
+          rgba(249, 249, 249, 0),
+          rgba(249, 249, 249, 1)
+        );
+        pointer-events: none;
+      }
+
+      .toggle-button {
+        background: #e7f5f0;
+        border: none;
+        border-radius: 15px;
+        padding: 6px 12px;
+        margin: 5px 0 10px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        color: #42b983;
+        display: flex;
+        align-items: center;
+        transition: all 0.2s ease;
+      }
+
+      .toggle-button:hover {
+        background: #d7efe5;
+        transform: translateY(-1px);
+      }
+
+      .toggle-icon {
+        margin-left: 5px;
+        font-size: 0.75rem;
+      }
+
       @media (max-width: 768px) {
         .plan-meta {
           /* flex-direction: column; */
@@ -993,7 +1039,9 @@
           <li>支持 Function Call</li>
         </ul>
         <hr />
-        <p>正在实现中，点击 <a href="#/一些想法/02_桌面端client">查看进度</a></p>
+        <p>
+          正在实现中，点击 <a href="#/一些想法/02_桌面端client">查看进度</a>
+        </p>
       </div>
 
       <div class="plan-item">
@@ -1043,5 +1091,60 @@
         >蜀ICP备2025141169号</a
       >
     </div>
+
+    <!-- 加载计划展开/收起功能脚本 -->
+    <script>
+      (function () {
+        initPlanToggle();
+        // 初始化计划折叠功能
+        function initPlanToggle() {
+          const planItems = document.querySelectorAll(".plan-item");
+
+          if (!planItems.length) return;
+
+          // 为每个计划项添加展开/收起功能
+          planItems.forEach(function (item) {
+            // 已经处理过的项目跳过
+            if (item.classList.contains("toggle-initialized")) return;
+
+            // 找到详细信息列表
+            const detailsList = item.querySelector(".plan-details");
+            if (!detailsList) return;
+
+            // 默认收起状态(只显示两行)
+            detailsList.classList.add("collapsed");
+
+            // 创建切换按钮
+            const toggleButton = document.createElement("button");
+            toggleButton.className = "toggle-button";
+            toggleButton.innerHTML =
+              '<span>展开详情</span><i class="toggle-icon">▼</i>';
+
+            // 将按钮插入到标题后面
+            const titleEl = item.querySelector("h4");
+            if (titleEl) {
+              titleEl.after(toggleButton);
+            } else {
+              detailsList.before(toggleButton);
+            }
+
+            // 添加点击事件
+            toggleButton.addEventListener("click", function () {
+              detailsList.classList.toggle("collapsed");
+              if (detailsList.classList.contains("collapsed")) {
+                toggleButton.innerHTML =
+                  '<span>展开详情</span><i class="toggle-icon">▼</i>';
+              } else {
+                toggleButton.innerHTML =
+                  '<span>收起详情</span><i class="toggle-icon">▲</i>';
+              }
+            });
+
+            // 标记为已处理
+            item.classList.add("toggle-initialized");
+          });
+        }
+      })();
+    </script>
   </body>
 </html>

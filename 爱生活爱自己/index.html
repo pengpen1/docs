@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>户外生活导航</title>
+    <style>
+      .container {
+        position: relative;
+        width: 100%;
+        max-width: 1200px;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
+
+      /* 页面标题 */
+      .page-title {
+        text-align: center;
+        position: relative;
+        z-index: 10;
+      }
+
+      .page-title h1 {
+        font-size: 3rem;
+        color: #333;
+        display: inline-block;
+        padding: 0 15px;
+        position: relative;
+        margin-bottom: 15px;
+      }
+
+      .page-title p {
+        font-size: 1.2rem;
+        color: #666;
+      }
+
+      /* 气泡导航 */
+      .bubbles-container {
+        position: relative;
+        width: 100%;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .bubble {
+        position: absolute;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-weight: bold;
+        font-size: 1.5rem;
+        text-decoration: none;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transform-origin: center;
+        background-position: center;
+        background-size: cover;
+        overflow: hidden;
+      }
+
+      .bubble:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .bubble:hover:before {
+        background: rgba(0, 0, 0, 0.1);
+      }
+
+      .bubble:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+      }
+
+      .bubble-title {
+        position: relative;
+        z-index: 2;
+        color: #ffffff;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      }
+
+      .bubble-cycling {
+        width: 180px;
+        height: 180px;
+        background: radial-gradient(
+          circle at 30% 30%,
+          rgba(100, 181, 246, 0.9),
+          rgba(30, 136, 229, 0.8)
+        );
+        animation: rotate 20s linear infinite, float 6s ease-in-out infinite;
+      }
+
+      .bubble-marathon {
+        width: 160px;
+        height: 160px;
+        background: radial-gradient(
+          circle at 30% 30%,
+          rgba(239, 154, 154, 0.9),
+          rgba(229, 57, 53, 0.8)
+        );
+        animation: rotate 20s linear infinite reverse,
+          float 7s ease-in-out infinite 1s;
+      }
+
+      .bubble-hiking {
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(
+          circle at 30% 30%,
+          rgba(129, 199, 132, 0.9),
+          rgba(56, 142, 60, 0.8)
+        );
+        animation: rotate 20s linear infinite,
+          float 8s ease-in-out infinite 0.5s;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0) rotate(0deg);
+        }
+        25% {
+          transform: translateY(-15px) rotate(2deg);
+        }
+        50% {
+          transform: translateY(0) rotate(0deg);
+        }
+        75% {
+          transform: translateY(15px) rotate(-2deg);
+        }
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg) translateX(120px) rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg) translateX(120px) rotate(-360deg);
+        }
+      }
+
+      /* 背景装饰 */
+      .background-decoration {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+
+      .decoration-circle {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.1;
+      }
+
+      .circle-1 {
+        width: 300px;
+        height: 300px;
+        background-color: #3498db;
+        top: -100px;
+        left: -100px;
+      }
+
+      .circle-2 {
+        width: 200px;
+        height: 200px;
+        background-color: #e74c3c;
+        bottom: -50px;
+        right: 100px;
+      }
+
+      .circle-3 {
+        width: 250px;
+        height: 250px;
+        background-color: #2ecc71;
+        bottom: 150px;
+        left: 100px;
+      }
+
+      /* 响应式设计 */
+      @media (max-width: 992px) {
+        .page-title h1 {
+          font-size: 2.5rem;
+        }
+
+        .bubble-cycling,
+        .bubble-marathon,
+        .bubble-hiking {
+          transform-origin: center center;
+        }
+
+        .orbit-center {
+          width: 15px;
+          height: 15px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .page-title h1 {
+          font-size: 2rem;
+        }
+
+        .page-title p {
+          font-size: 0.8rem;
+          padding: 0 20px;
+        }
+
+        .bubbles-container {
+          height: 500px;
+          flex-direction: column;
+        }
+
+        .bubble {
+          position: relative;
+          margin: 15px 0;
+          left: auto !important;
+          top: auto !important;
+          animation: float 6s ease-in-out infinite !important;
+        }
+
+        .bubble-cycling {
+          width: 120px;
+          height: 120px;
+        }
+
+        .bubble-marathon {
+          width: 120px;
+          height: 120px;
+        }
+
+        .bubble-hiking {
+          width: 120px;
+          height: 120px;
+        }
+
+        .background-decoration {
+          display: none;
+        }
+
+        .orbit-center {
+          display: none;
+        }
+      }
+
+      /* 添加中心点样式 */
+      .orbit-center {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: radial-gradient(circle, #fff, #f0f0f0);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 5;
+      }
+
+      /* 调整各气泡初始位置和动画 */
+      .bubble-cycling {
+        left: 50%;
+        top: 50%;
+        transform-origin: center;
+        animation: rotateOrbit1 20s linear infinite;
+      }
+
+      .bubble-marathon {
+        left: 50%;
+        top: 50%;
+        transform-origin: center;
+        animation: rotateOrbit2 20s linear infinite;
+      }
+
+      .bubble-hiking {
+        left: 50%;
+        top: 50%;
+        transform-origin: center;
+        animation: rotateOrbit3 20s linear infinite;
+      }
+
+      @keyframes rotateOrbit1 {
+        0% {
+          transform: translate(-50%, -50%) rotate(0deg) translateX(150px)
+            rotate(0deg);
+        }
+        100% {
+          transform: translate(-50%, -50%) rotate(360deg) translateX(150px)
+            rotate(-360deg);
+        }
+      }
+
+      @keyframes rotateOrbit2 {
+        0% {
+          transform: translate(-50%, -50%) rotate(120deg) translateX(150px)
+            rotate(-120deg);
+        }
+        100% {
+          transform: translate(-50%, -50%) rotate(480deg) translateX(150px)
+            rotate(-480deg);
+        }
+      }
+
+      @keyframes rotateOrbit3 {
+        0% {
+          transform: translate(-50%, -50%) rotate(240deg) translateX(150px)
+            rotate(-240deg);
+        }
+        100% {
+          transform: translate(-50%, -50%) rotate(600deg) translateX(150px)
+            rotate(-600deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-title">
+        <h1>户外生活记录</h1>
+        <p>
+          记录生活中的每一次冒险与挑战，无论是骑行、跑步还是登山，都值得被铭记
+        </p>
+      </div>
+
+      <div class="bubbles-container">
+        <div class="orbit-center"></div>
+        <a href="#/爱生活爱自己/01_骑行生活.html" class="bubble bubble-cycling">
+          <span class="bubble-title">骑行生活</span>
+        </a>
+        <a
+          href="#/爱生活爱自己/02_马拉松日记.html"
+          class="bubble bubble-marathon"
+        >
+          <span class="bubble-title">马拉松日记</span>
+        </a>
+        <a href="#/爱生活爱自己/03_登山记录.html" class="bubble bubble-hiking">
+          <span class="bubble-title">登山记录</span>
+        </a>
+      </div>
+
+      <div class="background-decoration">
+        <div class="decoration-circle circle-1"></div>
+        <div class="decoration-circle circle-2"></div>
+        <div class="decoration-circle circle-3"></div>
+      </div>
+    </div>
+
+    <script>
+      // 气泡动画
+      const bubbles = document.querySelectorAll(".bubble");
+
+      // 添加悬停效果
+      bubbles.forEach((bubble) => {
+        bubble.addEventListener("mouseenter", function () {
+          this.classList.add("hover");
+          this.style.animationPlayState = "paused";
+        });
+
+        bubble.addEventListener("mouseleave", function () {
+          this.classList.remove("hover");
+          this.style.animationPlayState = "running";
+        });
+      });
+
+    </script>
+  </body>
+</html>

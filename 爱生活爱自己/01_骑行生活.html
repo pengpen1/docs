@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>骑行生活记录</title>
+    <style>
+      /* 基础样式 */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        color: #333;
+        background-color: #f8f9fa;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      /* 页面标题 */
+      .page-title {
+        text-align: center;
+        margin-bottom: 40px;
+        position: relative;
+      }
+
+      .page-title h1 {
+        font-size: 2.5rem;
+        color: #2c3e50;
+        display: inline-block;
+        padding: 0 15px;
+        position: relative;
+      }
+
+      .page-title h1:after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #3498db, transparent);
+      }
+
+      /* 时间线样式 */
+      .timeline {
+        position: relative;
+        margin: 30px 0;
+      }
+
+      .timeline:before {
+        content: "";
+        position: absolute;
+        width: 4px;
+        background-color: #3498db;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 2px;
+        box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+      }
+
+      .timeline-item {
+        padding: 20px 40px;
+        position: relative;
+        width: 50%;
+        margin-bottom: 50px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        transform: translateY(0);
+      }
+
+      .timeline-item:hover {
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        transform: translateY(-5px);
+      }
+
+      .timeline-item:nth-child(odd) {
+        left: 0;
+        border-left: none;
+        border-right: 4px solid #3498db;
+      }
+
+      .timeline-item:nth-child(even) {
+        left: 50%;
+        border-right: none;
+        border-left: 4px solid #3498db;
+      }
+
+      .timeline-dot {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        right: -14.5px;
+        background-color: #fff;
+        border: 4px solid #3498db;
+        top: 15px;
+        border-radius: 50%;
+        z-index: 1;
+        box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+      }
+
+      .timeline-item:nth-child(even) .timeline-dot {
+        left: -14.5px;
+      }
+
+      .timeline-date {
+        display: inline-block;
+        padding: 5px 12px;
+        background: #3498db;
+        color: #fff;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        margin-bottom: 15px;
+        box-shadow: 0 3px 5px rgba(52, 152, 219, 0.2);
+      }
+
+      .timeline-content h3 {
+        margin-bottom: 15px;
+        color: #2c3e50;
+        font-size: 1.4rem;
+      }
+
+      .timeline-content p {
+        line-height: 1.8;
+        margin-bottom: 15px;
+        color: #555;
+      }
+
+      /* 照片画廊 */
+      .photo-gallery {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10px;
+        margin: 15px 0;
+        position: relative;
+      }
+
+      /* 照片遮掩和查看更多按钮 */
+      .photo-gallery .photo-item:nth-child(n + 5) {
+        display: none;
+      }
+
+      .photo-gallery.has-more:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 0;
+        z-index: 2;
+      }
+
+      .view-more-btn {
+        display: none;
+        width: 100%;
+        text-align: center;
+        background: #3498db;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 0;
+        margin-top: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .view-more-btn:hover {
+        background: #2980b9;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .photo-gallery.has-more + .view-more-btn {
+        display: block;
+      }
+
+      .photo-gallery.expanded .photo-item:nth-child(n + 5) {
+        display: block;
+      }
+
+      .photo-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        height: 0;
+        padding-bottom: 75%; /* 宽高比4:3 */
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .photo-item:hover {
+        transform: scale(1.03);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .photo-item img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.3s ease;
+      }
+
+      /* 点击照片放大 */
+      .photo-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .photo-overlay.active {
+        display: flex;
+        opacity: 1;
+      }
+
+      .overlay-content {
+        position: relative;
+        max-width: 90%;
+        max-height: 90%;
+      }
+
+      .overlay-content img {
+        max-width: 100%;
+        max-height: 90vh;
+        border-radius: 5px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+      }
+
+      .close-overlay {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        color: white;
+        font-size: 30px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .close-overlay:hover {
+        transform: scale(1.2);
+      }
+
+      /* PC端特殊样式 */
+      @media (min-width: 993px) {
+        .photo-gallery {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      /* 响应式设计 */
+      @media (max-width: 992px) {
+        .timeline:before {
+          left: 30px;
+        }
+
+        .timeline-item {
+          width: 100%;
+          padding-left: 80px;
+          padding-right: 25px;
+          margin-bottom: 40px;
+        }
+
+        .timeline-item:nth-child(odd),
+        .timeline-item:nth-child(even) {
+          left: 0;
+          border-right: none;
+          border-left: 4px solid #3498db;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot,
+        .timeline-item:nth-child(even) .timeline-dot {
+          left: 16px;
+        }
+
+        .photo-gallery {
+          grid-template-columns: repeat(2, 1fr);
+          grid-gap: 8px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .container {
+          padding: 15px 10px;
+        }
+
+        .page-title h1 {
+          font-size: 1.8rem;
+        }
+
+        .timeline-item {
+          padding: 15px 18px 15px 48px;
+        }
+
+        .photo-gallery {
+          grid-template-columns: repeat(2, 1fr);
+          grid-gap: 6px;
+          margin: 10px 0;
+        }
+
+        .timeline-date {
+          font-size: 0.8rem;
+          padding: 4px 10px;
+        }
+
+        .timeline-content h3 {
+          font-size: 1.2rem;
+          margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+          font-size: 0.95rem;
+          margin-bottom: 10px;
+        }
+
+        .view-more-btn {
+          padding: 6px 0;
+          font-size: 0.9rem;
+          margin-top: 6px;
+        }
+
+        .timeline:before {
+          left: 20px;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot,
+        .timeline-item:nth-child(even) .timeline-dot {
+          left: 8px;
+          width: 20px;
+          height: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-title">
+        <h1>我的骑行生活</h1>
+      </div>
+
+      <div class="timeline" id="timeline">
+        <!-- 示例记录 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2024年5月7日</div>
+          <div class="timeline-content">
+            <h3>西湖环湖骑行</h3>
+            <p>
+              今天天气晴朗，决定骑行环西湖一周。一路上风景如画，柳树拂面，湖水波光粼粼。走断桥-白堤-苏堤-杨公堤路线，全程约15公里，用时2小时。
+            </p>
+            <div class="photo-gallery">
+              <div class="photo-item">
+                <img src="../_media/image/run.jpg" alt="竹林" />
+              </div>
+              <div class="photo-item">
+                <img src="../_media/image/run.jpg" alt="溪水" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2024年4月23日</div>
+          <div class="timeline-content">
+            <h3>九溪烟树徒步骑行</h3>
+            <p>
+              早上骑车到九溪十八涧入口，停好车后徒步游览。溪水清澈，竹林幽深。午餐在当地农家乐吃了农家菜，然后骑行返回市区，路上遇到几位同好，一路畅聊骑行经历。
+            </p>
+            <div class="photo-gallery">
+              <div class="photo-item">
+                <img src="../_media/image/run.jpg" alt="竹林" />
+              </div>
+              <div class="photo-item">
+                <img src="../_media/image/run.jpg" alt="溪水" />
+              </div>
+              <div class="photo-item">
+                <img src="../_media/image/run.jpg" alt="山路" />
+              </div>
+              <div class="photo-item">
+                <img src="../_media/image/run.jpg" alt="山路" />
+              </div>
+              <div class="photo-item">
+                <img src="../_media/image/run.jpg" alt="山路" />
+              </div>
+              <div class="photo-item">
+                <img src="../_media/image/run.jpg" alt="山路" />
+              </div>
+              <div class="photo-item">
+                <img src="../_media/image/run.jpg" alt="山路" />
+              </div>
+            </div>
+            <button class="view-more-btn">查看更多照片 (3+)</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="photo-overlay" id="photoOverlay">
+        <div class="overlay-content">
+          <span class="close-overlay" id="closeOverlay">&times;</span>
+          <img id="enlargedImg" src="" alt="放大图片" />
+        </div>
+      </div>
+    </div>
+
+    <!-- <div data-load-script="../_media/scripts/views/ride.js"></div> -->
+    <script>
+      (function () {
+        // 处理照片画廊查看更多功能
+        const galleries = document.querySelectorAll(".photo-gallery");
+
+        galleries.forEach((gallery) => {
+          const photos = gallery.querySelectorAll(".photo-item");
+          const viewMoreBtn = gallery.nextElementSibling;
+
+          // 如果照片数量超过4张，添加has-more类
+          if (photos.length > 4) {
+            gallery.classList.add("has-more");
+
+            // 确认按钮的文本
+            if (
+              viewMoreBtn &&
+              viewMoreBtn.classList.contains("view-more-btn")
+            ) {
+              viewMoreBtn.textContent = `查看更多照片 (${photos.length - 4}+)`;
+
+              // 点击查看更多按钮展开画廊
+              viewMoreBtn.addEventListener("click", function () {
+                gallery.classList.toggle("expanded");
+
+                if (gallery.classList.contains("expanded")) {
+                  viewMoreBtn.textContent = "收起照片";
+                } else {
+                  viewMoreBtn.textContent = `查看更多照片 (${
+                    photos.length - 4
+                  }+)`;
+                }
+              });
+            }
+          }
+        });
+
+        // 点击照片放大
+        const photoItems = document.querySelectorAll(".photo-item");
+        const photoOverlay = document.getElementById("photoOverlay");
+        const enlargedImg = document.getElementById("enlargedImg");
+        const closeOverlay = document.getElementById("closeOverlay");
+
+        photoItems.forEach((item) => {
+          item.addEventListener("click", function () {
+            const imgSrc = this.querySelector("img").src;
+            enlargedImg.src = imgSrc;
+            photoOverlay.classList.add("active");
+          });
+        });
+
+        closeOverlay &&
+          closeOverlay.addEventListener("click", function () {
+            photoOverlay.classList.remove("active");
+          });
+
+        // 点击overlay背景关闭
+        photoOverlay &&
+          photoOverlay.addEventListener("click", function (e) {
+            if (e.target === this) {
+              photoOverlay.classList.remove("active");
+            }
+          });
+
+        // 键盘ESC关闭
+        document.addEventListener("keydown", function (e) {
+          if (
+            e.key === "Escape" &&
+            photoOverlay &&
+            photoOverlay.classList.contains("active")
+          ) {
+            photoOverlay.classList.remove("active");
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
