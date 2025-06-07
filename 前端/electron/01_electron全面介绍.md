@@ -4,9 +4,17 @@
 
 Electron（前身为 Atom Shell）是一个开源的跨平台桌面应用程序开发框架，由 GitHub 开发。它允许开发者使用 Web 技术（HTML、CSS 和 JavaScript）构建原生桌面应用程序。
 
+Electron 的本质是是结合了 Chromium 与 Node.js
+
+> Electron = Chromium + Node.js + Native API
+
+
+
 ## 核心架构
 
 ### 1. 多进程架构
+
+![Electron](https://cdn.jsdelivr.net/gh/pengpen1/blog-images/20250607103157.png)
 
 Electron 采用了类似 Chromium 的多进程架构，主要包含以下进程：
 
@@ -46,6 +54,8 @@ app.whenReady().then(createWindow);
   - 处理用户交互
   - 运行前端逻辑
 - **技术栈**：基于 Chromium 的渲染引擎
+- ctrl + shift + i 打开控制台
+- ctrl + r 刷新
 
 #### 预加载脚本 (Preload Scripts)
 
@@ -114,6 +124,8 @@ ipcRenderer.on("port", (event) => {
 });
 ```
 
+
+
 ## 底层技术实现
 
 ### 1. Chromium 渲染引擎
@@ -165,6 +177,8 @@ new BrowserWindow({
   },
 });
 ```
+
+
 
 ## 与传统 Web 开发的区别
 
@@ -275,6 +289,8 @@ if (process.env.NODE_ENV === "development") {
 }
 ```
 
+
+
 ## 应用场景
 
 ### 1. 适合的场景
@@ -346,6 +362,8 @@ const menuTemplate = [
 ];
 ```
 
+
+
 ## 生态系统和工具
 
 ### 1. 开发工具
@@ -363,6 +381,8 @@ const menuTemplate = [
 
 - **Devtron**：Electron 开发者工具扩展
 - **Electron Inspector**：主进程调试
+
+
 
 ## 目录结构
 
@@ -386,6 +406,8 @@ my-electron-app/
 ├── package.json
 └── electron-builder.json    # 打包配置
 ```
+
+
 
 ## 总结
 

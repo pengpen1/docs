@@ -183,6 +183,38 @@
         mermaidConfig: {
           theme: "dark", // You can set mermaid theme options here
         },
+        markdown: {
+          renderer: {
+            code: function (code, lang) {
+              var html = "";
+              // 搜索 mermaid 代码
+              if (
+                code.match(/^sequenceDiagram/) ||
+                code.match(/^graph/) ||
+                code.match(/^gantt/)
+              ) {
+                // 生成一个 mermaid 图表的容器
+                html = '<div class="mermaid">' + code + "</div>";
+              }
+              // 源码自带的 Prism 高亮插件
+              var hl = Prism.highlight(
+                code,
+                Prism.languages[lang] || Prism.languages.markup
+              );
+              // 将图表的容器添加到代码之前
+              return (
+                html +
+                '<pre v-pre data-lang="' +
+                lang +
+                '"><code class="lang-' +
+                lang +
+                '">' +
+                hl +
+                "</code></pre>"
+              );
+            },
+          },
+        },
         executeScript: true, // 允许执行 Markdown 中的脚本
         plugins: [
           function (hook, vm) {
@@ -208,6 +240,16 @@
                   // loader.removeAttribute('data-load-script');
                 }
               });
+            });
+          },
+          function (hook, vm) {
+            hook.ready(function () {
+              // 初始化 mermaid, 禁用自动渲染
+              mermaid.initialize({ startOnLoad: false });
+            });
+            hook.doneEach(function () {
+              // 每个页面渲染完成后手动渲染 mermaid 图表
+              mermaid.init(undefined, ".mermaid");
             });
           },
         ],

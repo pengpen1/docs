@@ -104,6 +104,8 @@ const categories = {
   uidesign: "UI设计",
   thoughts: "一些想法",
   other: "其他",
+  // live: "爱生活爱自己",
+  // english: "学好英语走天下",
 };
 
 // 需要排除的文件名，对于所有分类都适用
