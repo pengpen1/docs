@@ -563,6 +563,13 @@
         border-left: 4px solid #42b983;
       }
 
+      .beian-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
       .beian-text {
         font-size: 1em;
         color: #595959;
@@ -571,15 +578,32 @@
 
       .beian {
         text-align: center;
+        display: flex;
+        align-items: center;
         margin-top: 20px;
         font-size: 0.8em;
         color: #595959;
+      }
+
+      .beian-badge {
+        width: 14px;
+        height: 14px;
+        margin-right: 5px;
+        /* 基线对齐 */
+        vertical-align: middle;
       }
 
       .beian a {
         text-decoration: none;
         color: #595959;
         font-weight: normal;
+      }
+
+      .copyright {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 0.8em;
+        color: #595959;
       }
 
       .idea-time {
@@ -1085,11 +1109,29 @@
     </h2> -->
 
     <!-- 备案号 -->
-    <div class="beian">
-      <span class="beian-text">备案号：</span>
-      <a href="https://beian.miit.gov.cn/" target="_blank"
-        >蜀ICP备2025141169号</a
-      >
+    <div class="beian-container">
+      <div class="beian">
+        <img
+          src="./_media/image/badge.png"
+          class="beian-badge"
+          alt="川公网安备51010502015366号"
+        />
+        <a href=" " rel="noreferrer" target="_blank"
+          >川公网安备51010502015366号</a
+        >
+      </div>
+
+      <div class="beian">
+        <span class="beian-text">备案号：</span>
+        <a href="https://beian.miit.gov.cn/" target="_blank"
+          >蜀ICP备2025141169号</a
+        >
+      </div>
+    </div>
+
+    <!-- 版权 -->
+    <div class="copyright">
+      <p>Copyright © 2025 coderpeng</p>
     </div>
 
     <!-- 加载计划展开/收起功能脚本 -->

@@ -29,3 +29,5 @@
   - [19_MCP 之 QQ 邮箱](/AI/19_MCP之QQ邮箱.md)
   - [20_claude-code 初体验](/AI/20_claude-code初体验.md)
   - [21\_模型部署扫盲](/AI/21_模型部署扫盲.md)
+  - [22\_cursor增强计划](/AI/22_cursor增强计划.md)
+  - [23\_Augment初体验](/AI/23_Augment初体验.md)

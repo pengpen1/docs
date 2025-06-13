@@ -43,6 +43,7 @@
 
   - [01_electron全面介绍](/前端/electron/01_electron全面介绍.md)
   - [02_electron集成](/前端/electron/02_electron集成.md)
+  - [03_开发模式唤醒问题](/前端/electron/03_开发模式唤醒问题.md)
 
 - 前端安全
 
