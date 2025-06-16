@@ -1,6 +1,6 @@
 {
   "name": "docs",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "description": "<h1 align=\"center\" id=\"site-title\">coderpeng 的笔记</h1>",
   "homepage": "https://github.com/pengpen1/docs#readme",
   "bugs": {
@@ -12,11 +12,25 @@
   },
   "license": "ISC",
   "author": "coderpeng",
-  "type": "commonjs",
+  "type": "module",
   "main": "index.js",
   "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview",
     "serve": "docsify serve",
+    "build:traditional": "node build.js",
     "update:version": "node ./scripts/updateVersion.js",
     "update:count": "node ./_media/scripts/count-md-files.js"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "vite-plugin-static-copy": "^1.0.0"
+  },
+  "dependencies": {
+    "docsify": "^4.13.1",
+    "docsify-pagination": "^2.6.1",
+    "mermaid": "^10.6.1",
+    "prismjs": "^1.29.0"
   }
 }
