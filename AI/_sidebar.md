@@ -31,3 +31,4 @@
   - [21\_模型部署扫盲](/AI/21_模型部署扫盲.md)
   - [22\_cursor增强计划](/AI/22_cursor增强计划.md)
   - [23\_Augment初体验](/AI/23_Augment初体验.md)
+  - [24_gemini cli初体验](/AI/24_gemini-cli初体验.md)

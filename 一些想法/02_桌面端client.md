@@ -2,7 +2,7 @@
 
 **概要：** 我想实现个桌面端 client。
 
-
+[**GitHub 仓库地址**](https://github.com/pengpen1/agent-desk)
 
 ## agent-desk
 
@@ -13,8 +13,6 @@
 - 支持人机交互
 
 - 支持 Function Call
-
-  
 
 ## AG-UI 协议
 
@@ -30,23 +28,19 @@
 
 - **灵活的中间件层：**AG-UI 包含一个中间件层，旨在确保在不同事件传输环境下（如 SSE, WebSockets, webhooks 等）的兼容性，并允许宽松的事件格式匹配，以支持广泛的 Agent 和应用互操作性。
 
-
-
 交互功能：
 
-- **💬Agentic Chat实时流式传输：**支持流畅的对话式交互。
+- **💬Agentic Chat 实时流式传输：**支持流畅的对话式交互。
 
-- **🔄双向状态同步：**确保聊天内外状态的一致性。
+- **🔄 双向状态同步：**确保聊天内外状态的一致性。
 
-- **🧩生成式UI和结构化消息（支持增量流）：**Agent可以不仅仅返回文本，还能驱动前端生成动态UI组件。
+- **🧩 生成式 UI 和结构化消息（支持增量流）：**Agent 可以不仅仅返回文本，还能驱动前端生成动态 UI 组件。
 
-- **🧠实时上下文丰富：**动态地为Agent提供交互所需的上下文信息。
+- **🧠 实时上下文丰富：**动态地为 Agent 提供交互所需的上下文信息。
 
-- **🛠️前端工具调用 (Tool Calls)：**允许Agent调用在前端定义的工具或函数。
+- **🛠️ 前端工具调用 (Tool Calls)：**允许 Agent 调用在前端定义的工具或函数。
 
-- **🧑‍💻 人机协作 (Human-in-the-loop / Human-on-the-loop)：**支持人类用户在Agent执行过程中进行干预或协作。
-
-
+- **🧑‍💻 人机协作 (Human-in-the-loop / Human-on-the-loop)：**支持人类用户在 Agent 执行过程中进行干预或协作。
 
 ## 步骤
 
@@ -59,4 +53,3 @@ git branch -M main
 git remote add origin git@github.com:pengpen1/agent-desk.git
 git push -u origin main
 ```
-

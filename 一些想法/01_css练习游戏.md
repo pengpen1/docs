@@ -2,6 +2,8 @@
 
 **概要：** 我想实现个练习css的网站。
 
+[**GitHub 仓库地址**](https://github.com/pengpen1/css-practice-game)
+
 ## css-practice-game
 
 - 类似于闯关游戏，从简单的开始，逐渐增加难度，用户可以选择关卡，将css的布局技巧都一一体现(浮动、定位、flex、grid等等)
