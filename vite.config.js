@@ -5,21 +5,31 @@ export default defineConfig({
   plugins: [
     viteStaticCopy({
       targets: [
-        // 复制所有 .md 文件
-        { src: '*.md', dest: '.' },
-        { src: '**/*.md', dest: '.' },
-        // 复制 HTML 文件（排除index.html和模板文件）
-        { src: '*.html', dest: '.', ignore: ['index.html', 'index-*.html'] },
-        // 复制媒体文件
-        { src: '_media/**/*', dest: '_media' },
-        // 复制其他必要文件
-        { src: '.nojekyll', dest: '.' },
-        { src: 'favicon.ico', dest: '.' },
-        { src: '_sidebar.md', dest: '.' },
-        { src: '_navbar.md', dest: '.' },
-        { src: '_coverpage.md', dest: '.' }
-      ]
-    })
+        {
+          src: [
+            'AI',
+            'UI设计',
+            '一些想法',
+            '其他',
+            '前端',
+            '后端',
+            '学好英语走天下',
+            '工具',
+            '爬虫',
+            '爱生活爱自己',
+            '算法',
+            '设计模式',
+            '_media',
+            '*.md',
+            '*.html',
+            'favicon.ico',
+          ],
+          dest: '.',
+          // vite build会清空dist目录，所以要忽略index.html
+          ignore: ['index.html'],
+        },
+      ],
+    }),
   ],
   root: '.',
   publicDir: 'public',
