@@ -32,3 +32,4 @@
   - [22\_cursor增强计划](/AI/22_cursor增强计划.md)
   - [23\_Augment初体验](/AI/23_Augment初体验.md)
   - [24_gemini cli初体验](/AI/24_gemini-cli初体验.md)
+  - [25_prompt收集](/AI/25_prompt收集.md)
