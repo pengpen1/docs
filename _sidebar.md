@@ -47,6 +47,10 @@
   - [23_Augment 初体验](/AI/23_Augment初体验.md)
   - [24_gemini cli初体验](/AI/24_gemini-cli初体验.md)
   - [25_prompt收集](/AI/25_prompt收集.md)
+  - [26_应对GPT5的prompt技巧](/AI/26_应对GPT5的prompt技巧.md)
+  - [27_kiro初尝试](/AI/27_kiro初尝试.md)
+  - [28_codex私有化部署](/AI/28_codex私有化部署.md)
+  - [29_Gemini3Pro和Antigravity初体验](/AI/29_Gemini3Pro和Antigravity初体验.md)
   
 - 后端
 
